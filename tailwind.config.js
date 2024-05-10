@@ -9,6 +9,9 @@ export default {
       ...defaultTheme.screens,
     },
     extend: {
+      colors: {
+        prime: "#00a7e5",
+      },
       fontFamily: {
         lato: '"Lato", sans-serif',
         rubik: '"Rubik Scribble", system-ui',
@@ -21,28 +24,28 @@ export default {
       {
         light: {
           ...require("daisyui/src/theming/themes")["light"],
-          primary: "#2196F3",
+          primary: "green",
           secondary: "teal",
           ".navbarr": {
             "background-color": "#e0dede",
           },
 
-          "--swiper-navigation-color": "#2196F3",
-          "--swiper-pagination-color": "#2196F3",
+          "--swiper-navigation-color": "green",
+          "--swiper-pagination-color": "green",
           "--swiper-auto-count-color": "rgb(229 231 235)",
         },
       },
       {
         dark: {
           ...require("daisyui/src/theming/themes")["dark"],
-          primary: "green",
+          primary: "#00a7e5",
           secondary: "teal",
           ".navbarr": {
             "background-color": "#242323",
           },
 
-          "--swiper-navigation-color": "green",
-          "--swiper-pagination-color": "green",
+          "--swiper-navigation-color": "#00a7e5",
+          "--swiper-pagination-color": "#00a7e5",
           "--swiper-auto-count-color": "rgb(229 231 235)",
         },
       },

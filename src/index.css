@@ -3,3 +3,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* Custom Styles for button */
+
+.btn {
+  height: auto;
+  min-height: 0rem;
+}
+
+.btn-circle {
+  width: auto;
+}
+
+/* Login page Bg-Images Style */
+#login_img {
+  background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.295),
+      rgba(0, 0, 0, 0.404)
+    ),
+    url("https://i.ibb.co/3MfRmQZ/login-Abstract.jpg");
+}
