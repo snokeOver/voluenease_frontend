@@ -64,8 +64,10 @@ const AddPost = () => {
     const postData = {
       ...formData,
       deadline: formatedDate(startDate),
+      email: user.email || "Private_Email",
+      volunNumber: parseInt(formData.volunNumber),
     };
-
+    console.log(postData);
     Swal.fire({
       background: currTheme === "dark" ? "#1f2937 " : "",
       title: "Are you sure?",
@@ -79,6 +81,7 @@ const AddPost = () => {
       if (result.isConfirmed) {
         try {
           setPageLoading(true);
+
           const { data } = await sAxios.post(`/api/add-post`, postData);
           if (data) {
             setPageLoading(false);
@@ -292,7 +295,7 @@ const AddPost = () => {
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text text-lg">
-                      Short Description
+                      Short Description <span className="text-red-500">*</span>
                     </span>
                   </label>
                   <textarea

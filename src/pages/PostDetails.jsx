@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-
+import { FaLock } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import { FaPhoneAlt } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import { BsCart4 } from "react-icons/bs";
+import Swal from "sweetalert2";
 
 import { Helmet } from "react-helmet-async";
 import useAxios from "../hooks/useAxios";
@@ -14,15 +14,37 @@ import { goToTop } from "../helper/goToTop";
 import PageSkeleton from "../components/shared/PageSkeleton";
 import GoToTopBtn from "../components/shared/GoToTopBtn";
 import ActionButton from "../components/shared/ActionButton";
+import useSAxios from "../hooks/useSAxios";
+import PrimaryButton from "../components/shared/PrimaryButton";
 
 const PostDetails = () => {
   const nsAxios = useAxios();
-  const { setToastMsg } = useData();
+  const sAxios = useSAxios();
+  const { setToastMsg, pageLoading, setPageLoading, currTheme } = useData();
   const { user } = useAuth();
   const navigate = useNavigate();
   const [postCard, setPostCard] = useState({});
   const { id } = useParams();
-  const [pageLoading, setPageLoading] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
+
+  const [formData, setFormData] = useState({
+    id: "",
+    uid: "",
+    email: "",
+    name: "",
+    imageUrl: "",
+    title: "",
+    category: "",
+    location: "",
+    description: "",
+    volunNumber: "",
+    deadline: "",
+    VolunName: "",
+    volunEmail: "",
+    suggestion: "",
+    status: "",
+  });
+
   // Get the Spots that this user added
   useEffect(() => {
     const getSingleData = async () => {
@@ -46,29 +68,89 @@ const PostDetails = () => {
     }
   }, [user]);
 
-  // Calculate Total price
-  const formateTotalVisitors = (visitors) => {
-    const formatedVisitors = visitors.toLocaleString("en-US");
-    return formatedVisitors;
-  };
-
   // Handle the add to cart button
-  const handleBeVolunteer = (id) => {
+  const handleBeVolunteer = (singlePost) => {
     if (!user) {
       navigate("/login");
       return goToTop();
     }
-    //  const result = getCartIdsFromLST(user?.uid);
-    //  if (result.includes(id)) {
-    //    return setToastMsg("Tourist Spot Already Added To Cart  !");
-    //  } else {
-    //    storeCartIdsToLST(user?.uid, id);
-    //    setCartNumber(result.length + 1);
-    //    storeUserPreference();
-    //    return setToastMsg("Tourist Spot added succesfully  !");
-    //  }
+
+    setFormData((prevData) => ({
+      ...prevData,
+      id: singlePost._id,
+      uid: singlePost.uid,
+      email: singlePost.email,
+      name: singlePost.name,
+      imageUrl: singlePost.imageUrl,
+      title: singlePost.title,
+      category: singlePost.category,
+      location: singlePost.location,
+      description: singlePost.description,
+      volunNumber: singlePost.volunNumber,
+      deadline: singlePost.deadline,
+      VolunName: user.displayName || "",
+      volunEmail: user.email || "Private_Email",
+      suggestion: "",
+      status: "Requested",
+    }));
+    setOpenModal(true);
   };
 
+  // This should handle all the changes of different fields
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+    setBtnDisabled(false);
+  };
+
+  // Handle the Volunteer Request button from Modal to create Request and update the number of volunteers of related post
+  const handleVolunRequest = (e) => {
+    e.preventDefault();
+
+    Swal.fire({
+      background: currTheme === "dark" ? "#1f2937 " : "",
+      target: document.getElementById("form-modal"),
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Request to Be Volunteer !",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        setPageLoading(true);
+        try {
+          const { data } = await sAxios.post(
+            `/api/request-to-volunteer/`,
+            formData
+          );
+          if (data) {
+            // setPageUpdate(true);
+            setPageLoading(false);
+            setOpenModal(false);
+            Swal.fire({
+              background: currTheme === "dark" ? "#1f2937 " : "",
+              title: "Created!",
+              text: "Your Request has been Created.",
+              icon: "success",
+            });
+          } else {
+            console.log(data);
+            setPageLoading(false);
+            setOpenModal(false);
+          }
+        } catch (err) {
+          console.log(err.response);
+          setPageLoading(false);
+          setOpenModal(false);
+        }
+      }
+    });
+  };
   return (
     <>
       <Helmet>
@@ -106,9 +188,9 @@ const PostDetails = () => {
                     <span className="font-extrabold text-lg mr-2">
                       Deadlines:
                     </span>
-                    <h5 className=" text-primary text-lg font-semibold inline-block">
+                    <span className=" text-primary text-lg font-semibold inline-block">
                       {postCard.deadline}
-                    </h5>
+                    </span>
                   </h4>
                 </div>
                 <div className=" font-mediumpy-5 mt-3 text-message-color">
@@ -155,7 +237,7 @@ const PostDetails = () => {
 
                 <div
                   className="flex gap-10 w-[90%] mx-auto mt-8"
-                  onClick={() => handleBeVolunteer(postCard._id)}
+                  onClick={() => handleBeVolunteer(postCard)}
                 >
                   <ActionButton buttonText="Be A Volunteer" />
                 </div>
@@ -163,6 +245,240 @@ const PostDetails = () => {
             </div>
           )}
         </div>
+        {/* modal to update spot */}
+        <dialog
+          id="volun_request_modal"
+          className={`modal ${openModal ? "modal-open" : ""} `}
+        >
+          <div id="form-modal" className="modal-box w-11/12 max-w-5xl">
+            <form method="dialog">
+              {/* if there is a button in form, it will close the modal */}
+              <button
+                onClick={() => setOpenModal(false)}
+                className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+              >
+                ✕
+              </button>
+            </form>
+            <div>
+              <h2 className="text-2xl text-primary text-center font-semibold mb-5">
+                Be One of The Volunteers
+              </h2>
+            </div>
+            <div className=" lg:w-[80%] xl:w-[70%] lg:mx-auto">
+              <form className="" onSubmit={handleVolunRequest}>
+                {/* first row */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-5  w-full">
+                  {/* Image part */}
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text text-lg">Thumbnail URL</span>
+                    </label>
+                    <label className="input input-bordered flex items-center gap-2 border-prime relative">
+                      <input
+                        readOnly
+                        placeholder={formData.imageUrl}
+                        className="grow placeholder-gray-400 text-sm"
+                      />
+                      <FaLock className="text-lg absolute right-4 bottom-4 " />
+                    </label>
+                  </div>
+
+                  {/* Category part */}
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text text-lg">Category</span>
+                    </label>
+                    <label className="input input-bordered flex items-center gap-2 border-prime relative">
+                      <input
+                        readOnly
+                        placeholder={formData.category}
+                        className="grow placeholder-gray-400 text-sm"
+                      />
+                      <FaLock className="text-lg absolute right-4 bottom-4 " />
+                    </label>
+                  </div>
+                </div>
+
+                {/* second row */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-5  w-full md:mt-3">
+                  {/* Tourist spot part */}
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text text-lg">Title</span>
+                    </label>
+                    <label className="input input-bordered flex items-center gap-2 border-prime relative">
+                      <input
+                        readOnly
+                        placeholder={formData.title}
+                        className="grow placeholder-gray-400 text-sm"
+                      />
+                      <FaLock className="text-lg absolute right-4 bottom-4 " />
+                    </label>
+                  </div>
+
+                  {/* Location part */}
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text text-lg">Location</span>
+                    </label>
+                    <label className="input input-bordered flex items-center gap-2 border-prime relative">
+                      <input
+                        readOnly
+                        placeholder={formData.location}
+                        className="grow placeholder-gray-400 text-sm"
+                      />
+                      <FaLock className="text-lg absolute right-4 bottom-4 " />
+                    </label>
+                  </div>
+                </div>
+
+                {/* Third row */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-5  w-full md:mt-3">
+                  {/* No of Volunteers part */}
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text text-lg">
+                        No. Of Volunteers
+                      </span>
+                    </label>
+                    <label className="input input-bordered flex items-center gap-2 border-prime relative">
+                      <input
+                        readOnly
+                        placeholder={formData.volunNumber}
+                        className="grow placeholder-gray-400 text-sm"
+                      />
+                      <FaLock className="text-lg absolute right-4 bottom-4 " />
+                    </label>
+                  </div>
+                  {/* Deadline part */}
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text text-lg">Deadline</span>
+                    </label>
+                    <label className="input input-bordered flex items-center gap-2 border-prime relative">
+                      <input
+                        readOnly
+                        placeholder={formData.deadline}
+                        className="grow placeholder-gray-400 text-sm"
+                      />
+                      <FaLock className="text-lg absolute right-4 bottom-4 " />
+                    </label>
+                  </div>
+                </div>
+
+                {/* Fourth row */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-5  w-full md:mt-3">
+                  {/* Name part */}
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text text-lg">Organizer Name</span>
+                    </label>
+                    <label className="input input-bordered flex items-center gap-2 border-prime relative">
+                      <input
+                        readOnly
+                        placeholder={formData.name}
+                        className="grow placeholder-gray-400 text-sm"
+                      />
+                      <FaLock className="text-lg absolute right-4 bottom-4 " />
+                    </label>
+                  </div>
+
+                  {/* Email part */}
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text text-lg">
+                        Organizer Email
+                      </span>
+                    </label>
+                    <label className="input input-bordered flex items-center gap-2 border-prime relative">
+                      <input
+                        readOnly
+                        placeholder={formData.email || "Private_Email"}
+                        className="grow placeholder-gray-400 text-sm"
+                      />
+                      <FaLock className="text-lg absolute right-4 bottom-4 " />
+                    </label>
+                  </div>
+                </div>
+
+                {/* Fifth row */}
+                <div className="grid grid-cols-1 gap-2 md:gap-5  w-full md:mt-3">
+                  {/* Short Description part */}
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text text-lg">Description</span>
+                    </label>
+                    <textarea
+                      name="description"
+                      rows={4}
+                      value={formData.description || ""}
+                      onChange={handleChange}
+                      placeholder="Write relevant description here . . . "
+                      className="text-area-style input input-bordered h-auto placeholder-gray-400 text-sm border-prime"
+                      required
+                    />
+                  </div>
+                </div>
+
+                {/* Sixth row */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-5  w-full md:mt-3">
+                  {/* Name part */}
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text text-lg">Volunteer Name</span>
+                    </label>
+                    <label className="input input-bordered flex items-center gap-2 border-prime relative">
+                      <input
+                        readOnly
+                        placeholder={formData.VolunName}
+                        className="grow placeholder-gray-400 text-sm"
+                      />
+                      <FaLock className="text-lg absolute right-4 bottom-4 " />
+                    </label>
+                  </div>
+
+                  {/* Email part */}
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text text-lg">
+                        Volunteer Email
+                      </span>
+                    </label>
+                    <label className="input input-bordered flex items-center gap-2 border-prime relative">
+                      <input
+                        readOnly
+                        placeholder={formData.volunEmail}
+                        className="grow placeholder-gray-400 text-sm"
+                      />
+                      <FaLock className="text-lg absolute right-4 bottom-4 " />
+                    </label>
+                  </div>
+                </div>
+                {/* Seventh row */}
+                <div className="grid grid-cols-1 gap-2 md:gap-5  w-full md:mt-3">
+                  {/* Suggestion part */}
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text text-lg">Suggestion</span>
+                    </label>
+                    <textarea
+                      name="suggestion"
+                      rows={2}
+                      value={formData.suggestion || ""}
+                      onChange={handleChange}
+                      placeholder="Write if you have any . . . "
+                      className="text-area-style input input-bordered h-auto placeholder-gray-400 text-sm border-prime"
+                    />
+                  </div>
+                </div>
+                <div className="form-control mt-6 md:w-1/2 mx-auto">
+                  <PrimaryButton textField="Request" />
+                </div>
+              </form>
+            </div>
+          </div>
+        </dialog>
       </div>
       <GoToTopBtn />
     </>

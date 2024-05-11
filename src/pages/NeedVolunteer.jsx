@@ -7,6 +7,7 @@ import SectionTitle from "../components/shared/SectionTitle";
 
 import GoToTopBtn from "../components/shared/GoToTopBtn";
 import VolunPostCard from "../components/needVolun/VolunPostCard";
+import { goToTop } from "../helper/goToTop";
 
 const NeedVolunteer = () => {
   const { posts, pageLoading } = useData();
@@ -20,7 +21,8 @@ const NeedVolunteer = () => {
 
   // handle the show Volunteer post button
   const handleShowDetailsBtn = (id) => {
-    navigate(`/spot-details/${id}`);
+    navigate(`/post-details/${id}`);
+    return goToTop();
   };
 
   // handle the filter

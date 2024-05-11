@@ -16,7 +16,7 @@ const NeedVolunteersNow = () => {
 
   // handle the show Tourist Spot button
   const handleShowDetailsBtn = (id) => {
-    navigate(`/spot-details/${id}`);
+    navigate(`/post-details/${id}`);
     return goToTop();
   };
 

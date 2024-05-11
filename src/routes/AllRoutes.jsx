@@ -65,7 +65,7 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "/spot-details/:id",
+        path: "/post-details/:id",
         element: (
           <PrivateRoutes>
             <PostDetails />
