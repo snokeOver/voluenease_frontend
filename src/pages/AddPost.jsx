@@ -20,7 +20,7 @@ const AddPost = () => {
   const { setPageLoading, currTheme } = useData();
   const [formData, setFormData] = useState({
     uid: user.uid || "",
-    email: user.email || "",
+    email: user.email || "Private_Email",
     name: user.displayName || "",
     imageUrl: "",
     title: "",

@@ -7,7 +7,7 @@ import SectionTitle from "../shared/SectionTitle";
 import PrimaryButton from "../shared/PrimaryButton";
 import PostCard from "./PostCard";
 
-const NeedVolunteers = () => {
+const NeedVolunteersNow = () => {
   const { posts } = useData();
 
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ const NeedVolunteers = () => {
         <SectionTitle title="Volunteers Need Now" />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:px-5 group">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 px-5 group">
         {posts.map((post) => (
           <PostCard
             key={post._id}
@@ -56,7 +56,7 @@ const NeedVolunteers = () => {
       </div>
       <div className="w-full mt-10">
         <Link
-          to="/tour-spots"
+          to="/need-volunteer"
           className="flex  justify-center w-full md:w-3/4 lg:w-[40%] mx-auto"
         >
           <PrimaryButton textField="View All" />
@@ -66,4 +66,4 @@ const NeedVolunteers = () => {
   );
 };
 
-export default NeedVolunteers;
+export default NeedVolunteersNow;

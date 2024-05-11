@@ -8,6 +8,7 @@ import Login from "../pages/Login";
 import Join from "../pages/Join";
 import PrivateRoutes from "./PrivateRoutes";
 import AddPost from "../pages/AddPost";
+import PostDetails from "../pages/PostDetails";
 
 const router = createBrowserRouter([
   {
@@ -63,14 +64,14 @@ const router = createBrowserRouter([
           </PrivateRoutes>
         ),
       },
-      // {
-      //   path: "/spot-details/:id",
-      //   element: (
-      //     <PrivateRoutes>
-      //       <SpotDetails />
-      //     </PrivateRoutes>
-      //   ),
-      // },
+      {
+        path: "/spot-details/:id",
+        element: (
+          <PrivateRoutes>
+            <PostDetails />
+          </PrivateRoutes>
+        ),
+      },
       {
         path: "/login",
         element: (

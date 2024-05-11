@@ -4,7 +4,6 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaPhoneAlt, FaLocationArrow } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
-import { FaLocationDot } from "react-icons/fa6";
 import useData from "../../hooks/useData";
 import SocialLinks from "../shared/SocialLinks";
 import SiteLogo from "../shared/SiteLogo";

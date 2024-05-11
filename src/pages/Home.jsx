@@ -2,7 +2,8 @@ import { Helmet } from "react-helmet-async";
 import { goToTop } from "../helper/goToTop";
 import GoToTopBtn from "../components/shared/GoToTopBtn";
 import Banner from "../components/home/Banner";
-import NeedVolunteers from "../components/home/NeedVolunteers";
+import NeedVolunteersNow from "../components/home/NeedVolunteersNow";
+
 const Home = () => {
   return (
     <>
@@ -13,7 +14,7 @@ const Home = () => {
         </Helmet>
         <Banner />
         <div className="md:container mx-auto">
-          <NeedVolunteers />
+          <NeedVolunteersNow />
         </div>
         {/* <MarqueeSection /> */}
 

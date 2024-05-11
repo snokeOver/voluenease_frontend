@@ -4,7 +4,6 @@ import useAuth from "../../hooks/useAuth";
 import useData from "../../hooks/useData";
 import useLogOut from "../../hooks/useLogOut";
 import RingLoading from "../shared/RingLoading";
-import SiteLogo from "../shared/SiteLogo";
 import { useState } from "react";
 
 const Navbar = () => {
@@ -41,6 +40,19 @@ const Navbar = () => {
         </NavLink>
         {pathname === "/" ? (
           <div className=" absolute w-full h-[1px] lg:h-[1.3px] bottom-0 lg:-bottom-[14px] py-0 rounded-none bg-prime  hover:bg-prime"></div>
+        ) : null}
+      </li>
+      <li className="relative">
+        <NavLink
+          className={({ isActive }) =>
+            `${isActive ? "text-prime" : "hover:text-prime"} mr-1 `
+          }
+          to="/need-volunteer"
+        >
+          Need Volunteer
+        </NavLink>
+        {pathname === "/need-volunteer" ? (
+          <div className=" absolute w-full h-[1px] lg:h-[1.3px] py-0 rounded-none bg-prime bottom-0 lg:-bottom-[14px] hover:bg-prime"></div>
         ) : null}
       </li>
       <li>
@@ -88,20 +100,6 @@ const Navbar = () => {
             </li>
           </ul>
         </details>
-      </li>
-
-      <li className="relative">
-        <NavLink
-          className={({ isActive }) =>
-            `${isActive ? "text-prime" : "hover:text-prime"} mr-1 `
-          }
-          to="/need-volunteer"
-        >
-          Need Volunteer
-        </NavLink>
-        {pathname === "/need-volunteer" ? (
-          <div className=" absolute w-full h-[1px] lg:h-[1.3px] py-0 rounded-none bg-prime bottom-0 lg:-bottom-[14px] hover:bg-prime"></div>
-        ) : null}
       </li>
 
       {loading || pageLoading ? (

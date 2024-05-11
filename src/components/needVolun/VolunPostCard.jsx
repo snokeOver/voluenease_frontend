@@ -1,9 +1,11 @@
 import { FaLocationDot } from "react-icons/fa6";
 import { BsFillEyeFill } from "react-icons/bs";
 import { CiCalendarDate } from "react-icons/ci";
+import { FaPeopleLine } from "react-icons/fa6";
 
-const PostCard = ({ post, handleShowDetailsBtn }) => {
-  const { imageUrl, location, title, category, deadline, _id } = post;
+const VolunPostCard = ({ post, handleShowDetailsBtn }) => {
+  const { imageUrl, location, title, category, deadline, _id, volunNumber } =
+    post;
 
   return (
     <div className="card card-compact w-auto bg-base-100 rounded-xl    border">
@@ -21,6 +23,17 @@ const PostCard = ({ post, handleShowDetailsBtn }) => {
       <div className="card-body">
         <div className="text-left flex-grow">
           <h2 className="text-2xl text-primary  font-bold ">{title}</h2>
+          <div className="flex gap-2 items-center mt-2">
+            <div>
+              <FaPeopleLine className="text-4xl" />
+            </div>
+
+            <div>
+              <button className="btn bg-primary text-gray-100 hover:bg-sky-700 py-1 rounded-md px-2">
+                {volunNumber}
+              </button>
+            </div>
+          </div>
         </div>
         <div className="divider p-0 m-0"></div>
 
@@ -48,4 +61,4 @@ const PostCard = ({ post, handleShowDetailsBtn }) => {
   );
 };
 
-export default PostCard;
+export default VolunPostCard;
