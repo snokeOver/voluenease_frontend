@@ -1,11 +1,11 @@
 import { NavLink, useLocation } from "react-router-dom";
 import ThemeButton from "./ThemeButton";
-import ButtonSpinner from "../shared/ButtonSpinner";
 import useAuth from "../../hooks/useAuth";
 import useData from "../../hooks/useData";
 import useLogOut from "../../hooks/useLogOut";
 import RingLoading from "../shared/RingLoading";
 import SiteLogo from "../shared/SiteLogo";
+import { useState } from "react";
 
 const Navbar = () => {
   const { user, loading } = useAuth();
@@ -13,6 +13,14 @@ const Navbar = () => {
   const logOut = useLogOut();
 
   const { pathname } = useLocation();
+  const [isHovering, setIsHovering] = useState(false);
+
+  const fallbackPPUrl = "https://i.ibb.co/vxg6nY4/user.png";
+
+  // fallback for Profile image to show default image
+  const handleImageError = (event) => {
+    event.target.src = "https://i.ibb.co/vxg6nY4/user.png";
+  };
 
   // Handle LogOut operation
   const handleLogOut = () => {
@@ -25,14 +33,14 @@ const Navbar = () => {
       <li className="relative">
         <NavLink
           className={({ isActive }) =>
-            `${isActive ? "text-indigo-500" : "hover:text-prime"} mr-1 `
+            `${isActive ? "text-prime" : "hover:text-prime"} mr-1 `
           }
           to="/"
         >
           Home
         </NavLink>
         {pathname === "/" ? (
-          <div className=" absolute w-full h-[1.3px] py-0 rounded-none bg-prime -bottom-3 hover:bg-prime"></div>
+          <div className=" absolute w-full h-[1px] lg:h-[1.3px] bottom-0 lg:-bottom-[14px] py-0 rounded-none bg-prime  hover:bg-prime"></div>
         ) : null}
       </li>
       <li>
@@ -49,7 +57,7 @@ const Navbar = () => {
                 About
               </NavLink>
               {pathname === "/about" ? (
-                <div className=" absolute w-full h-[1.3px] py-0 rounded-none bg-prime -bottom-3 hover:bg-prime"></div>
+                <div className=" absolute w-full h-[1px] lg:h-[1.3px] py-0 rounded-none bg-prime bottom-0 lg:-bottom-[14px] hover:bg-prime"></div>
               ) : null}
             </li>
             <li className="relative">
@@ -62,7 +70,7 @@ const Navbar = () => {
                 Branches
               </NavLink>
               {pathname === "/branches" ? (
-                <div className=" absolute w-full h-[1.3px] py-0 rounded-none bg-prime -bottom-3 hover:bg-prime"></div>
+                <div className=" absolute w-full h-[1px] lg:h-[1.3px] py-0 rounded-none bg-prime bottom-0 lg:-bottom-[14px] hover:bg-prime"></div>
               ) : null}
             </li>
             <li className="relative">
@@ -75,7 +83,7 @@ const Navbar = () => {
                 Contact
               </NavLink>
               {pathname === "/contact" ? (
-                <div className=" absolute w-full h-[1.3px] py-0 rounded-none bg-prime -bottom-3 hover:bg-prime"></div>
+                <div className=" absolute w-full h-[1px] lg:h-[1.3px] py-0 rounded-none bg-prime bottom-0 lg:-bottom-[14px] hover:bg-prime"></div>
               ) : null}
             </li>
           </ul>
@@ -92,7 +100,7 @@ const Navbar = () => {
           Need Volunteer
         </NavLink>
         {pathname === "/need-volunteer" ? (
-          <div className=" absolute w-full h-[1.3px] py-0 rounded-none bg-prime -bottom-3 hover:bg-prime"></div>
+          <div className=" absolute w-full h-[1px] lg:h-[1.3px] py-0 rounded-none bg-prime bottom-0 lg:-bottom-[14px] hover:bg-prime"></div>
         ) : null}
       </li>
 
@@ -118,7 +126,7 @@ const Navbar = () => {
                         Add Post
                       </NavLink>
                       {pathname === "/add-post" ? (
-                        <div className=" absolute w-full h-[1.3px] py-0 rounded-none bg-prime -bottom-3 hover:bg-prime"></div>
+                        <div className=" absolute w-full h-[1px] lg:h-[1.3px] py-0 rounded-none bg-prime bottom-0 lg:-bottom-[14px] hover:bg-prime"></div>
                       ) : null}
                     </li>
                     <li className="relative">
@@ -133,7 +141,7 @@ const Navbar = () => {
                         Manage Posts
                       </NavLink>
                       {pathname === "/manage-posts" ? (
-                        <div className=" absolute w-full h-[1.3px] py-0 rounded-none bg-prime -bottom-3 hover:bg-prime"></div>
+                        <div className=" absolute w-full h-[1px] lg:h-[1.3px] py-0 rounded-none bg-prime bottom-0 lg:-bottom-[14px] hover:bg-prime"></div>
                       ) : null}
                     </li>
                   </ul>
@@ -195,100 +203,109 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navItems}</ul>
       </div>
+      {/* Navbar End */}
       <div className="navbar-end">
-        <div className="mr-2">
-          <ThemeButton />
-        </div>
-        <div className="dropdown dropdown-end">
-          <div tabIndex={0} role="button" className="mr-3 cursor-pointer">
-            <div className="indicator">
-              <img src="/icons/bag.svg" className="h-6 w-6" alt="" />
-              <span className="badge badge-sm indicator-item text-prime">
-                8
-              </span>
-            </div>
-          </div>
-          <div
-            tabIndex={0}
-            className="mt-3 z-[1] card card-compact dropdown-content w-52 bg-base-200 shadow"
-          >
-            <div className="card-body">
-              <span className="font-bold rounded-full text-lg">8 Items</span>
-              <span className="text-info">Subtotal: $999</span>
-              <div className="card-actions">
-                <button className="btn py-1   rounded-md text-prime border-prime bg-none hover:bg-prime hover:text-gray-100  btn-block">
-                  View cart
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="mr-2 cursor-pointer">
-          <img src="/icons/search.svg" alt="" />
-        </div>
-
-        {user ? (
+        <ThemeButton />
+        {loading || pageLoading ? (
+          <RingLoading />
+        ) : user ? (
           <>
-            <div className="dropdown dropdown-end">
+            {/* New avatar */}
+            <div className="dropdown dropdown-end ml-1">
               <div
                 tabIndex={0}
                 role="button"
-                className="btn btn-ghost btn-circle avatar mr-2"
+                className="btn btn-ghost btn-circle avatar"
               >
-                <div className="w-10 rounded-full">
+                <div
+                  className="w-8 rounded-full"
+                  onMouseEnter={() => setIsHovering(true)}
+                  onMouseLeave={() => setIsHovering(false)}
+                >
                   <img
-                    alt="profile Picture"
-                    src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                    alt="User Photo"
+                    src={user.photoURL || fallbackPPUrl}
+                    onError={handleImageError}
                   />
+                  {isHovering && (
+                    <div className="absolute  -top-4 text-xs  z-10">
+                      <h3> {user.displayName}</h3>
+                    </div>
+                  )}
                 </div>
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow w-52 bg-base-200 rounded-lg"
+                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
               >
+                <div className="flex flex-col gap-1 text-xs ml-3">
+                  <h3> {user.displayName}</h3>
+                  <h3 className="mt-1"> {user.email || "<Private_Email>"}</h3>
+                </div>
+                <div className="divider my-1"></div>
+
                 <li>
                   <NavLink
+                    to="/user-profile"
                     className={({ isActive }) =>
                       `${
                         isActive
                           ? "text-prime border-b border-prime"
-                          : "hover:text-prime"
-                      } mr-1 rounded-md`
+                          : "hover:text-prime "
+                      } w-full justify-between`
                     }
-                    to="/profile"
                   >
-                    Profile
-                    <span className="badge">New</span>
+                    Profile <span className="badge">New</span>
                   </NavLink>
                 </li>
                 <li>
                   <NavLink
+                    to="/cart"
                     className={({ isActive }) =>
                       `${
                         isActive
                           ? "text-prime border-b border-prime"
-                          : "hover:text-prime"
-                      } mr-1 rounded-md`
+                          : "hover:text-prime "
+                      } w-full justify-between`
                     }
-                    to="/settings"
                   >
-                    Settings
+                    <span>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                        />
+                      </svg>
+                    </span>
+                    <span className="badge">10</span>
                   </NavLink>
                 </li>
-                <li onClick={handleLogOut}>
-                  <a>{pageLoading && <ButtonSpinner />} Logout</a>
+                <li
+                  onClick={handleLogOut}
+                  className="bg-sky-400 hover:bg-sky-600 text-gray-100 rounded-2xl"
+                >
+                  <a>Logout</a>
                 </li>
               </ul>
             </div>
-            <NavLink to="/appointment">
-              <button className="btn py-2  md:py-3 md:px-7 rounded-sm text-prime border-prime bg-none hover:bg-prime hover:text-gray-100 ">
-                Appointment
-              </button>
-            </NavLink>
+            <a
+              onClick={handleLogOut}
+              className="btn border bg-transparent hover:bg-transparent  hover:border-prime hover:text-sky-800 dark:hover:text-gray-100 border-prime py-2 px-3 rounded-sm  text-prime btn-sm ml-2"
+            >
+              Logout
+            </a>
           </>
         ) : (
           <>
-            <NavLink to="/join" className="mr-3">
+            <NavLink to="/join" className="mx-2">
               <button className=" p-0 text-prime bg-transparent  hover:text-sky-700 dark:hover:text-gray-100 dark:hover:border-indigo-500">
                 Join
               </button>

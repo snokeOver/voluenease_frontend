@@ -78,13 +78,18 @@ const Footer = () => {
         <div className="footer flex md:justify-center">
           <nav>
             <h6 className="footer-title">Newsletter</h6>
-            <a className=" ">Save up to 50% on tours!</a>
+            <input
+              name="name"
+              type="text"
+              placeholder="Your Name"
+              className="input border-t-0 border-l-0 border-r-0 border-b  input-bordered   border-prime input-md w-full max-w-xs"
+            />
             <div className="relative">
               <input
                 name="email"
-                type="text"
+                type="email"
                 placeholder="Email . . . "
-                className="input  input-bordered  input-md w-full max-w-xs "
+                className="input border-t-0 border-l-0 border-r-0 border-b  input-bordered   border-prime input-md w-full max-w-xs "
               />
               <FaLocationArrow className=" cursor-pointer text-lg absolute text-primary right-5 bottom-4 sm:right-20 md:right-5 " />
             </div>

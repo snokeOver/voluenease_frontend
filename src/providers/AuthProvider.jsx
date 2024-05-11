@@ -17,7 +17,7 @@ export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const nSAxios = useAxios();
 
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
   const [regiSuccess, setRegiSuccess] = useState(false);
   const [logOutSuccess, setLogOutSuccess] = useState(false);
@@ -58,34 +58,35 @@ const AuthProvider = ({ children }) => {
     const unSubscribe = onAuthStateChanged(auth, async (user) => {
       if (user) {
         setUser(user);
-        // try {
-        //   const response = await nSAxios.post(
-        //     "/api/jwt",
-        //     { uid: user.uid },
-        //     { withCredentials: true }
-        //   );
-        //   setLoading(false);
-        //   console.log(response.data);
-        // } catch (err) {
-        //   console.log(err.message);
-        //   setLoading(false);
-        // }
+        setLoading(false);
+        try {
+          const response = await nSAxios.post(
+            "/api/jwt",
+            { uid: user.uid },
+            { withCredentials: true }
+          );
+          setLoading(false);
+          console.log(response.data);
+        } catch (err) {
+          console.log(err.message);
+          setLoading(false);
+        }
       } else {
         setLoading(false);
-        // try {
-        //   const response = await nSAxios.post(
-        //     "/api/logout",
-        //     {
-        //       uid: user?.uid,
-        //     },
-        //     { withCredentials: true }
-        //   );
-        //   setUser(null);
-        //   setLoading(false);
-        // } catch (err) {
-        //   console.log("Error logging out:", err.message);
-        //   setLoading(false);
-        // }
+        try {
+          const response = await nSAxios.post(
+            "/api/logout",
+            {
+              uid: user?.uid,
+            },
+            { withCredentials: true }
+          );
+          setUser(null);
+          setLoading(false);
+        } catch (err) {
+          console.log("Error logging out:", err.message);
+          setLoading(false);
+        }
       }
     });
     return () => unSubscribe();

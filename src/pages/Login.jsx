@@ -153,7 +153,7 @@ const Login = () => {
                   <label className="label">
                     <span className="label-text text-lg">Email</span>
                   </label>
-                  <label className="input input-bordered flex items-center gap-2">
+                  <label className="input input-bordered flex items-center gap-2 border-prime">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 16 16"
@@ -179,7 +179,7 @@ const Login = () => {
                   <label className="label">
                     <span className="label-text text-lg">Password</span>
                   </label>
-                  <label className="input input-bordered flex items-center gap-2">
+                  <label className="input input-bordered flex items-center gap-2 border-prime">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 16 16"

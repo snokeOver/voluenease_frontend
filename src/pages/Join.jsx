@@ -11,6 +11,7 @@ import SpinnerAtButton from "../components/shared/SpinnerAtButton.jsx";
 import GoogleButton from "../components/shared/GoogleButton.jsx";
 import GithubButton from "../components/shared/GithubButton.jsx";
 import SideSectionWithSlidder from "../components/shared/login/SideSectionWithSlidder.jsx";
+import ActionButton from "../components/shared/ActionButton.jsx";
 
 const Join = () => {
   const {
@@ -19,7 +20,6 @@ const Join = () => {
     googleRegister,
     setRegiSuccess,
     githubRegister,
-    pageLoading,
   } = useAuth();
   const { setToastMsg, setPageLoading } = useData();
   const navigate = useNavigate();
@@ -230,10 +230,10 @@ const Join = () => {
 
   // Handle All Successful firebase Registration
   const firebaseRegiSuccess = () => {
-    setToastMsg("Registration Successful  !");
+    setToastMsg("Joining Successful  !");
 
     setRegiSuccess(true);
-    setSuccessMsg("Registration Successful  !");
+    setSuccessMsg("Joining Successful  !");
     setPageLoading(true);
     setTimeout(() => {
       setRegiSuccess(false);
@@ -246,7 +246,7 @@ const Join = () => {
   return (
     <>
       <Helmet>
-        <title>Homestead | Register</title>
+        <title> Join | VolunEase</title>
       </Helmet>
       <div className="  container bg-base-100 mx-auto">
         <div className="hero bg-base-100 rounded-xl flex flex-col md:flex-row-reverse">
@@ -259,10 +259,8 @@ const Join = () => {
                   <h1 className="text-2xl font-bold text-center mb-5 text-green-500">
                     Please Wait !
                   </h1>
-                  <button className="btn btn-primary w-full">
-                    {pageLoading && <SpinnerAtButton />}
-                    we are Logging you in.
-                  </button>
+
+                  <ActionButton buttonText="We are logging yoy in . . ." />
                 </div>
               ) : (
                 <>
@@ -293,7 +291,7 @@ const Join = () => {
                       <label className="label">
                         <span className="label-text text-lg">Your Name</span>
                       </label>
-                      <label className="input input-bordered flex items-center gap-2">
+                      <label className="input input-bordered flex items-center gap-2  border-prime">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 16 16"
@@ -325,7 +323,7 @@ const Join = () => {
                           Your Photo URL
                         </span>
                       </label>
-                      <label className="input input-bordered flex items-center gap-2">
+                      <label className="input input-bordered flex items-center gap-2 border-prime">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
@@ -362,7 +360,7 @@ const Join = () => {
                           Email <span className="text-red-500">*</span>
                         </span>
                       </label>
-                      <label className="input input-bordered flex items-center gap-2">
+                      <label className="input input-bordered flex items-center gap-2 border-prime">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 16 16"
@@ -391,7 +389,7 @@ const Join = () => {
                           Password <span className="text-red-500">*</span>
                         </span>
                       </label>
-                      <label className="input input-bordered flex items-center gap-2">
+                      <label className="input input-bordered flex items-center gap-2 border-prime">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 16 16"

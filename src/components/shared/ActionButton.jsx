@@ -5,7 +5,7 @@ const ActionButton = ({ buttonText }) => {
   const { pageLoading } = useData();
 
   return (
-    <button className="btn btn-outline border-prime  text-prime  py-3 rounded-2xl hover:bg-prime hover:text-gray-100 hover:border-prime">
+    <button className="btn btn-outline border-prime  text-prime  py-3 rounded-2xl hover:bg-prime hover:text-gray-100 hover:border-prime w-full">
       {pageLoading && <ButtonSpinner />}
       {buttonText}
     </button>

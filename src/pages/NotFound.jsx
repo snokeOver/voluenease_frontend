@@ -1,10 +1,11 @@
 import { Helmet } from "react-helmet-async";
 import { NavLink } from "react-router-dom";
+import PrimaryButton from "../components/shared/PrimaryButton";
 const NotFound = () => {
   return (
     <>
       <Helmet>
-        <title>Not Found | TourTango</title>
+        <title>Not Found | VolunEase</title>
       </Helmet>
       <div className=" xl:my-20 container bg-base-100 mx-auto p-5 md:p-10 min-h-screen">
         <div className="hero py-10 rounded-lg bg-base-200">
@@ -19,9 +20,7 @@ const NotFound = () => {
               </p>
 
               <NavLink to="/">
-                <button className="btn hover:from-pink-500 hover:to-indigo-400 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-gray-200">
-                  Go Home
-                </button>
+                <PrimaryButton textField="Go Home" />
               </NavLink>
             </div>
           </div>
