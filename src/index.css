@@ -24,3 +24,8 @@
     ),
     url("https://i.ibb.co/3MfRmQZ/login-Abstract.jpg");
 }
+
+/* Custom style at Text area */
+textarea {
+  padding-top: 0.8rem;
+}

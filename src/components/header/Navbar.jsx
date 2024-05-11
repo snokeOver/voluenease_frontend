@@ -57,7 +57,7 @@ const Navbar = () => {
                 About
               </NavLink>
               {pathname === "/about" ? (
-                <div className=" absolute w-full h-[1px] lg:h-[1.3px] py-0 rounded-none bg-prime bottom-0 lg:-bottom-[14px] hover:bg-prime"></div>
+                <div className="absolute w-full h-[1px]  py-0 rounded-none bg-prime bottom-0  hover:bg-prime"></div>
               ) : null}
             </li>
             <li className="relative">
@@ -70,7 +70,7 @@ const Navbar = () => {
                 Branches
               </NavLink>
               {pathname === "/branches" ? (
-                <div className=" absolute w-full h-[1px] lg:h-[1.3px] py-0 rounded-none bg-prime bottom-0 lg:-bottom-[14px] hover:bg-prime"></div>
+                <div className="absolute w-full h-[1px]  py-0 rounded-none bg-prime bottom-0  hover:bg-prime"></div>
               ) : null}
             </li>
             <li className="relative">
@@ -83,7 +83,7 @@ const Navbar = () => {
                 Contact
               </NavLink>
               {pathname === "/contact" ? (
-                <div className=" absolute w-full h-[1px] lg:h-[1.3px] py-0 rounded-none bg-prime bottom-0 lg:-bottom-[14px] hover:bg-prime"></div>
+                <div className="absolute w-full h-[1px]  py-0 rounded-none bg-prime bottom-0  hover:bg-prime"></div>
               ) : null}
             </li>
           </ul>
@@ -121,12 +121,12 @@ const Navbar = () => {
                             isActive ? "text-prime" : "hover:text-prime"
                           } mr-1 `
                         }
-                        to="/add-post"
+                        to="/add-volunteer-post"
                       >
                         Add Post
                       </NavLink>
-                      {pathname === "/add-post" ? (
-                        <div className=" absolute w-full h-[1px] lg:h-[1.3px] py-0 rounded-none bg-prime bottom-0 lg:-bottom-[14px] hover:bg-prime"></div>
+                      {pathname === "/add-volunteer-post" ? (
+                        <div className="absolute w-full h-[1px]  py-0 rounded-none bg-prime bottom-0  hover:bg-prime"></div>
                       ) : null}
                     </li>
                     <li className="relative">
@@ -141,7 +141,7 @@ const Navbar = () => {
                         Manage Posts
                       </NavLink>
                       {pathname === "/manage-posts" ? (
-                        <div className=" absolute w-full h-[1px] lg:h-[1.3px] py-0 rounded-none bg-prime bottom-0 lg:-bottom-[14px] hover:bg-prime"></div>
+                        <div className="absolute w-full h-[1px]  py-0 rounded-none bg-prime bottom-0  hover:bg-prime"></div>
                       ) : null}
                     </li>
                   </ul>

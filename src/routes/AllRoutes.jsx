@@ -6,6 +6,8 @@ import NeedVolunteer from "../pages/NeedVolunteer";
 import PublicRoutes from "./PublicRoutes";
 import Login from "../pages/Login";
 import Join from "../pages/Join";
+import PrivateRoutes from "./PrivateRoutes";
+import AddPost from "../pages/AddPost";
 
 const router = createBrowserRouter([
   {
@@ -53,14 +55,14 @@ const router = createBrowserRouter([
       //     </PrivateRoutes>
       //   ),
       // },
-      // {
-      //   path: "/add-spot",
-      //   element: (
-      //     <PrivateRoutes>
-      //       <AddSpot />
-      //     </PrivateRoutes>
-      //   ),
-      // },
+      {
+        path: "/add-volunteer-post",
+        element: (
+          <PrivateRoutes>
+            <AddPost />
+          </PrivateRoutes>
+        ),
+      },
       // {
       //   path: "/spot-details/:id",
       //   element: (

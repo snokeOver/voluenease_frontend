@@ -40,9 +40,6 @@ export default {
           ...require("daisyui/src/theming/themes")["dark"],
           primary: "#00a7e5",
           secondary: "teal",
-          ".navbarr": {
-            "background-color": "#242323",
-          },
 
           "--swiper-navigation-color": "#00a7e5",
           "--swiper-pagination-color": "#00a7e5",
