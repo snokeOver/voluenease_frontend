@@ -78,8 +78,8 @@ const AddPost = () => {
       if (result.isConfirmed) {
         try {
           setPageLoading(true);
-          const response = await sAxios.post(`/api/add-post`, postData);
-          if (response.data) {
+          const { data } = await sAxios.post(`/api/add-post`, postData);
+          if (data) {
             setPageLoading(false);
             Swal.fire({
               background: currTheme === "dark" ? "#1f2937 " : "",
@@ -88,7 +88,7 @@ const AddPost = () => {
               icon: "success",
             });
           } else {
-            console.log(response.data);
+            console.log(data);
             setPageLoading(false);
           }
         } catch (err) {

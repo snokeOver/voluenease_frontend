@@ -60,13 +60,13 @@ const AuthProvider = ({ children }) => {
         setUser(user);
         setLoading(false);
         try {
-          const response = await nSAxios.post(
+          const { data } = await nSAxios.post(
             "/api/jwt",
             { uid: user.uid },
             { withCredentials: true }
           );
           setLoading(false);
-          console.log(response.data);
+          console.log(data);
         } catch (err) {
           console.log(err.message);
           setLoading(false);
@@ -74,7 +74,7 @@ const AuthProvider = ({ children }) => {
       } else {
         setLoading(false);
         try {
-          const response = await nSAxios.post(
+          const { data } = await nSAxios.post(
             "/api/logout",
             {
               uid: user?.uid,
