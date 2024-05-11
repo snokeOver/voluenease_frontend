@@ -98,47 +98,55 @@ const Footer = () => {
       </div>
       <div className="divider py-10"></div>
       {/* Last part */}
-      <div className="footer footer-center ">
+      <div className="footer footer-center">
         <div className="flex flex-col-reverse md:flex-row gap-10 justify-between  w-full">
-          {/* Copy Write part */}
-          <aside className="text-xs">
-            <p>© VolunEase - {new Date().getFullYear()} - All right reserved</p>
+          {/* Logo and Site Name part */}
+          <aside>
+            <div className="mb-3 ">
+              <Link
+                to="/"
+                className="text-3xl font-semibold font-rubik flex justify-center flex-col items-center gap-2"
+              >
+                <div>
+                  <img
+                    src="https://i.ibb.co/LQy37MK/logoV.png"
+                    alt=""
+                    className="w-12"
+                  />
+                </div>
+                <SiteLogo />
+              </Link>
+            </div>
           </aside>
           {/* Address part */}
           <aside>
             <div className="footer flex md:justify-center">
-              <nav>
-                <a className=" cursor-pointer  flex items-center gap-2">
-                  <FaLocationDot className="text-primary" />
-                  <span className="hover:text-primary text-left">
-                    123 Main Street, <br /> New York City, New York, USA
-                  </span>
-                </a>
-                <a className=" cursor-pointer  flex items-center gap-2">
-                  <FaPhoneAlt className="text-primary" />
-                  <span className="hover:text-primary">+(880) 15171-66682</span>
-                </a>
-                <a className=" cursor-pointer  flex items-center gap-2">
-                  <MdEmail className="text-primary" />
-                  <span className="hover:text-primary">
-                    snokeover@gmail.com
-                  </span>
-                </a>
+              <nav className="flex flex-col items-center">
+                <div>
+                  <a className=" cursor-pointer  flex items-center gap-2 mb-1">
+                    <FaPhoneAlt className="text-primary" />
+                    <span className="hover:text-primary">
+                      +(880) 15171-66682
+                    </span>
+                  </a>
+                  <a className=" cursor-pointer  flex items-center gap-2">
+                    <MdEmail className="text-primary" />
+                    <span className="hover:text-primary">
+                      snokeover@gmail.com
+                    </span>
+                  </a>
+                </div>
+                <div>
+                  <SocialLinks />
+                </div>
               </nav>
             </div>
           </aside>
-          {/* Logo and social icond part */}
-          <aside>
-            <div className="mb-3">
-              <Link to="/" className="text-3xl font-semibold font-rubik">
-                <SiteLogo />
-              </Link>
-            </div>
-            <div>
-              <SocialLinks />
-            </div>
-          </aside>
         </div>
+        {/* Copy Write part */}
+        <aside className="text-xs">
+          <p>© VolunEase - {new Date().getFullYear()} - All right reserved</p>
+        </aside>
       </div>
       <ToastContainer theme={currTheme} autoClose={2600} />
     </footer>

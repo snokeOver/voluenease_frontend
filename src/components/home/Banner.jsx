@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 // Import Swiper styles
@@ -12,11 +12,10 @@ import { Autoplay, Pagination, EffectFade } from "swiper/modules";
 
 import { useTypewriter } from "react-simple-typewriter";
 import CountUp from "react-countup";
-import useAxios from "../../hooks/useAxios";
+import useData from "../../hooks/useData";
 
 const Banner = () => {
-  const nsAxios = useAxios();
-  const [images, setImages] = useState([]);
+  const { slidderImages } = useData();
 
   const [text] = useTypewriter({
     words: [
@@ -28,23 +27,6 @@ const Banner = () => {
     ],
     loop: 0,
   });
-
-  // Get the banner images urls from DB
-  useEffect(() => {
-    const getBannerImages = async () => {
-      try {
-        const { data } = await nsAxios.get(`/api/banner-images`);
-        if (data) {
-          setImages(data);
-        } else {
-          console.log(data);
-        }
-      } catch (err) {
-        console.log(err.response);
-      }
-    };
-    getBannerImages();
-  }, []);
 
   const progressCircle = useRef(null);
   const progressContent = useRef(null);
@@ -70,7 +52,7 @@ const Banner = () => {
         className="mySwiper"
         effect={"fade"}
       >
-        {images.map((image) => (
+        {slidderImages.map((image) => (
           <SwiperSlide key={image._id}>
             <img
               src={image.image_url}

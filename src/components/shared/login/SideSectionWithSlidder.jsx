@@ -13,7 +13,7 @@ const SideSectionWithSlidder = ({ writings }) => {
           </h2>
         </div>
       </div>
-      <div className="flex px-2 xl:px-0">
+      <div className="flex px-2 md:px-10">
         <LoginSlidder />
       </div>
     </>

@@ -10,9 +10,10 @@ const DataProvider = ({ children }) => {
   const [pageLoading, setPageLoading] = useState(false);
   const defaultTheme = "dark";
   const [currTheme, setCurrTheme] = useState(defaultTheme);
-  const [services, setServices] = useState([]);
   const [checkOutId, setCheckOutId] = useState("");
   const [toastMsg, setToastMsg] = useState("");
+  const [slidderImages, setSlidderImages] = useState([]);
+  const [posts, setPosts] = useState([]);
 
   // function to Save the user preferences like theme-mood into MongoDb
   const storeUserPreference = async () => {
@@ -31,6 +32,41 @@ const DataProvider = ({ children }) => {
       }
     } catch (err) {
       console.log(err.response);
+    }
+  };
+
+  // Get the Volunteers post from DB for Need volunteers section
+  const getPosts = async () => {
+    try {
+      setPageLoading(true);
+      const { data } = await nsAxios.get(`/api/posts`);
+      if (data) {
+        setPosts(data);
+        setPageLoading(false);
+      } else {
+        console.log(data);
+        setPageLoading(false);
+      }
+    } catch (err) {
+      console.log(err.response);
+      setPageLoading(false);
+    }
+  };
+  // Get the banner images from DB for banner, login and join pages
+  const getBannerImages = async () => {
+    try {
+      setPageLoading(true);
+      const { data } = await nsAxios.get(`/api/banner-images`);
+      if (data) {
+        setSlidderImages(data);
+        setPageLoading(false);
+      } else {
+        console.log(data);
+        setPageLoading(false);
+      }
+    } catch (err) {
+      console.log(err.response);
+      setPageLoading(false);
     }
   };
 
@@ -57,32 +93,17 @@ const DataProvider = ({ children }) => {
     }
   };
 
+  // On First Render get Banner Images, Volunters need post for Home page
+  useEffect(() => {
+    getBannerImages();
+    getPosts();
+  }, []);
+
   // Update the User preference
   useEffect(() => {
     if (user) {
       getUserPreference();
     }
-
-    // // Get all the tourist spot from the database
-    // const fetchData = async () => {
-    //   try {
-    //     const response = await axios.get(`${baseURL}/api/spots`);
-    //     if (response.data) {
-    //       setSpotsArr(response.data);
-    //       setPageLoading(false);
-    //     } else {
-    //       console.log(response.data);
-    //       setPageLoading(false);
-    //     }
-    //   } catch (err) {
-    //     console.log(err.response);
-    //     setPageLoading(false);
-    //   }
-    // };
-    // if (!pageLoading) {
-    //   setPageLoading(true);
-    //   fetchData();
-    // }
   }, [user]);
 
   const dataItems = {
@@ -90,12 +111,13 @@ const DataProvider = ({ children }) => {
     setCurrTheme,
     pageLoading,
     setPageLoading,
-    services,
     checkOutId,
     setCheckOutId,
     toastMsg,
     setToastMsg,
     storeUserPreference,
+    slidderImages,
+    posts,
   };
 
   return (

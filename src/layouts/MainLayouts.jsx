@@ -6,7 +6,7 @@ const MainLayouts = () => {
   return (
     <div className="font-lato">
       <Header />
-      <div className="min-h-[calc(100vh-500px)]">
+      <div className="min-h-[calc(100vh-560px)]">
         <Outlet />
       </div>
       <Footer />

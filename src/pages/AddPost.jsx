@@ -33,8 +33,9 @@ const AddPost = () => {
 
   // Format date
   const formatedDate = (deadline) => {
-    const options = { day: "2-digit", month: "2-digit", year: "numeric" };
-    return deadline.toLocaleDateString("en-GB", options);
+    const options = { day: "2-digit", month: "short", year: "numeric" };
+    const formattedDate = deadline.toLocaleDateString("en-GB", options);
+    return formattedDate.replace(/ /g, "-");
   };
 
   // This should handle all the changes of different fields

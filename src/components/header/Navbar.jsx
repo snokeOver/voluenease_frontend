@@ -194,9 +194,7 @@ const Navbar = () => {
               className="w-12"
             />
 
-            <div className="hidden md:flex ">
-              <SiteLogo />
-            </div>
+            <div className="hidden md:flex "></div>
           </NavLink>
         </div>
       </div>
