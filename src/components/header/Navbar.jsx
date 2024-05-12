@@ -57,7 +57,7 @@ const Navbar = () => {
       </li>
       <li>
         <details>
-          <summary>Company</summary>
+          <summary>Organization</summary>
           <ul className="p-2 rounded-t-none rounded-b-md">
             <li className="relative">
               <NavLink

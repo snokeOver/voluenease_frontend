@@ -27,7 +27,7 @@ const LoginSlidder = () => {
         className="mySwiper  w-[20rem]  lg:w-[35rem] h-40 md:h-56 xl:h-72"
       >
         {slidderImages.map((image) => (
-          <SwiperSlide key={image.id}>
+          <SwiperSlide key={image._id}>
             <img
               src={image.image_url}
               alt={image.title}

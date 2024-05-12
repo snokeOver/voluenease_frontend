@@ -29,12 +29,17 @@ const NeedVolunteer = () => {
   const handleFilterSpot = (filterOps) => {
     let newArr = [...posts];
 
-    if (filterOps === "cost") {
-      newArr.sort(
-        (a, b) =>
-          parseInt(a.cost.replace(/\D/g, ""), 10) -
-          parseInt(b.cost.replace(/\D/g, ""), 10)
-      );
+    if (filterOps === "deadline") {
+      newArr.sort((a, b) => {
+        // Convert deadline strings to Date objects
+        const dateA = new Date(a.deadline);
+        const dateB = new Date(b.deadline);
+
+        // Compare the dates
+        if (dateA > dateB) return -1;
+        if (dateA < dateB) return 1;
+        return 0;
+      });
     } else if (filterOps === "number") {
       newArr.sort((a, b) => b.volunNumber - a.volunNumber);
     }

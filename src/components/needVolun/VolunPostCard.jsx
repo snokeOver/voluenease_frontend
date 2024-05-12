@@ -22,7 +22,7 @@ const VolunPostCard = ({ post, handleShowDetailsBtn }) => {
 
       <div className="card-body">
         <div className="text-left flex-grow">
-          <h2 className="text-2xl text-primary  font-bold ">{title}</h2>
+          <h2 className="text-2xl text-primary font-bold ">{title}</h2>
           <div className="flex gap-2 items-center mt-2">
             <div>
               <FaPeopleLine className="text-4xl" />
@@ -44,7 +44,14 @@ const VolunPostCard = ({ post, handleShowDetailsBtn }) => {
           </div>
           <div className="flex flex-col items-center gap-2 text-center">
             <CiCalendarDate className="text-lg" />
-            <h3>{deadline}</h3>
+            <h3>
+              {new Date(deadline).setHours(0, 0, 0, 0) >=
+              new Date().setHours(0, 0, 0, 0) ? (
+                `${deadline}`
+              ) : (
+                <p className="text-yellow-500">Expired</p>
+              )}
+            </h3>
           </div>
         </div>
         <div className="pt-3 w-full">

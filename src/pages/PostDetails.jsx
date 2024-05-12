@@ -73,6 +73,12 @@ const PostDetails = () => {
     if (!user) {
       navigate("/login");
       return goToTop();
+    } else if (new Date(singlePost.deadline) < new Date()) {
+      return setToastMsg("Expired! Please find another !");
+    } else if (singlePost.email === user.email) {
+      return setToastMsg("You are not allowed !");
+    } else if (singlePost.volunNumber < 1) {
+      return setToastMsg("Requirement filled up, Find another !");
     }
 
     setFormData((prevData) => ({
@@ -189,7 +195,11 @@ const PostDetails = () => {
                       Deadlines:
                     </span>
                     <span className=" text-primary text-lg font-semibold inline-block">
-                      {postCard.deadline}
+                      {new Date(postCard.deadline) > new Date() ? (
+                        `${postCard.deadline}`
+                      ) : (
+                        <p className="text-yellow-500">Expired</p>
+                      )}
                     </span>
                   </h4>
                 </div>
@@ -245,7 +255,7 @@ const PostDetails = () => {
             </div>
           )}
         </div>
-        {/* modal to update spot */}
+        {/* modal to create request to be-volunteer on this post */}
         <dialog
           id="volun_request_modal"
           className={`modal ${openModal ? "modal-open" : ""} `}

@@ -9,6 +9,7 @@ import Join from "../pages/Join";
 import PrivateRoutes from "./PrivateRoutes";
 import AddPost from "../pages/AddPost";
 import PostDetails from "../pages/PostDetails";
+import ManagePosts from "../pages/ManagePosts";
 
 const router = createBrowserRouter([
   {
@@ -48,14 +49,14 @@ const router = createBrowserRouter([
       //   path: "/spots-by-country/:country",
       //   element: <SpotsByCountry />,
       // },
-      // {
-      //   path: "/my-list",
-      //   element: (
-      //     <PrivateRoutes>
-      //       <MyList />
-      //     </PrivateRoutes>
-      //   ),
-      // },
+      {
+        path: "/manage-posts",
+        element: (
+          <PrivateRoutes>
+            <ManagePosts />
+          </PrivateRoutes>
+        ),
+      },
       {
         path: "/add-volunteer-post",
         element: (

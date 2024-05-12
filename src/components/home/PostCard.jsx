@@ -31,7 +31,14 @@ const PostCard = ({ post, handleShowDetailsBtn }) => {
           </div>
           <div className="flex flex-col items-center gap-2 text-center">
             <CiCalendarDate className="text-lg" />
-            <h3>{deadline}</h3>
+            <h3>
+              {new Date(deadline).setHours(0, 0, 0, 0) >=
+              new Date().setHours(0, 0, 0, 0) ? (
+                `${deadline}`
+              ) : (
+                <p className="text-yellow-500">Expired</p>
+              )}
+            </h3>
           </div>
         </div>
         <div className="pt-3 w-full">

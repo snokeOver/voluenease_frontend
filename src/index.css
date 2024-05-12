@@ -73,3 +73,9 @@ img {
   width: 100%;
   max-height: 750px;
 }
+
+/* design of table */
+.table
+  :where(thead tr, tbody tr:not(:last-child), tbody tr:first-child:last-child) {
+  border-bottom-width: 0px;
+}
