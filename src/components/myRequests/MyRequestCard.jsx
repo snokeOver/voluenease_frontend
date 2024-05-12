@@ -1,6 +1,6 @@
 import { Tooltip } from "react-tooltip";
 const MyRequestCard = ({ sPost, index, handleDeleteRequest }) => {
-  const { title, volunNumber, deadline, postId, imageUrl } = sPost;
+  const { title, volunNumber, deadline, postId, status, imageUrl } = sPost;
   return (
     <>
       <tr
@@ -10,6 +10,7 @@ const MyRequestCard = ({ sPost, index, handleDeleteRequest }) => {
         <td>{title}</td>
         <td>{volunNumber}</td>
         <td>{deadline}</td>
+        <td>{status}</td>
         <td className="">
           <button
             onClick={() => handleDeleteRequest(postId)}

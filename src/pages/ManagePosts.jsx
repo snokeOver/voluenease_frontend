@@ -17,7 +17,7 @@ import ActionButton from "../components/shared/ActionButton";
 const ManagePosts = () => {
   const { user } = useAuth();
   const sAxios = useSAxios();
-  const { setPageLoading, pageLoading, currTheme } = useData();
+  const { setPageLoading, pageLoading, currTheme, getPosts } = useData();
   const [startDate, setStartDate] = useState(new Date());
   const [loadedPosts, setLoadedPosts] = useState([]);
 
@@ -87,6 +87,7 @@ const ManagePosts = () => {
           if (response.data) {
             setPageLoading(false);
             getPostsOfOrganizer();
+            getPosts();
             Swal.fire({
               background: currTheme === "dark" ? "#1f2937 " : "",
               title: "Deleted!",
@@ -164,7 +165,7 @@ const ManagePosts = () => {
           );
           if (response.data) {
             getPostsOfOrganizer();
-            setPageLoading(false);
+            getPosts();
             setOpenModal(false);
             Swal.fire({
               background: currTheme === "dark" ? "#1f2937 " : "",
@@ -196,16 +197,26 @@ const ManagePosts = () => {
       ) : (
         <div className=" md:container bg-base-100 mx-2 md:mx-auto">
           {/* testing */}
-          <div className="hero py-10 rounded-lg bg-base-200">
-            <div className="hero-content text-center flex-col">
+          <div className=" py-10 rounded-lg bg-base-200">
+            <div className="text-center flex-col">
               <div className="text-center">
                 <h1 className="text-4xl font-bold">
-                  {loadedPosts.length > 0
-                    ? "All The Posts You Created"
-                    : "You didn't add any Post yet!"}
+                  {loadedPosts.length > 0 ? "" : "You didn't add any Post yet!"}
                 </h1>
               </div>
-              <div className="max-w-[20.9rem] xs:max-w-[23rem] md:max-w-2xl lg:max-w-3xl">
+              {/* heading section */}
+              <div className=" flex  items-center w-[90%] mx-auto gap-x-3 mb-4">
+                <h2 className="text-lg  font-medium ">
+                  My Poste for Volunteers
+                </h2>
+
+                <span className="px-3 py-1 text-xs text-prime bg-blue-100 rounded-full ">
+                  {loadedPosts.length}
+                  <span className="ml-1"> Post (s)</span>
+                </span>
+              </div>
+              {/* Table section */}
+              <div className="max-w-[22rem] xs:max-w-[23rem] md:max-w-5xl  mx-auto">
                 {loadedPosts.length > 0 && (
                   <div className="card w-full  shadow-2xl bg-base-100">
                     {/* Table for cart */}
@@ -213,7 +224,7 @@ const ManagePosts = () => {
                       <table className="table">
                         {/* head */}
                         <thead>
-                          <tr className="text-center text-lg">
+                          <tr className="text-left text-lg">
                             <th></th>
                             <th>Title</th>
                             <th>Volunteers</th>

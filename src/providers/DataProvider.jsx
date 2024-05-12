@@ -118,6 +118,7 @@ const DataProvider = ({ children }) => {
     storeUserPreference,
     slidderImages,
     posts,
+    getPosts,
   };
 
   return (

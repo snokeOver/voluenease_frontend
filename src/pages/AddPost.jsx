@@ -17,7 +17,7 @@ const AddPost = () => {
   const sAxios = useSAxios();
   const [startDate, setStartDate] = useState(new Date());
   const { user } = useAuth();
-  const { setPageLoading, currTheme } = useData();
+  const { setPageLoading, currTheme, getPosts } = useData();
   const [formData, setFormData] = useState({
     uid: user.uid || "",
     email: user.email || "Private_Email",
@@ -67,7 +67,6 @@ const AddPost = () => {
       email: user.email || "Private_Email",
       volunNumber: parseInt(formData.volunNumber),
     };
-    console.log(postData);
     Swal.fire({
       background: currTheme === "dark" ? "#1f2937 " : "",
       title: "Are you sure?",
@@ -84,7 +83,7 @@ const AddPost = () => {
 
           const { data } = await sAxios.post(`/api/add-post`, postData);
           if (data) {
-            setPageLoading(false);
+            getPosts();
             Swal.fire({
               background: currTheme === "dark" ? "#1f2937 " : "",
               title: "Saved!",

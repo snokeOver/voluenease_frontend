@@ -88,17 +88,18 @@ const MyRequest = () => {
               </h1>
             </div>
 
+            <div className=" flex  items-center w-[90%] mx-auto gap-x-3 ">
+              <h2 className="text-lg  font-medium ">
+                My Request to be Volunteer
+              </h2>
+
+              <span className="px-3 py-1 text-xs text-prime bg-blue-100 rounded-full ">
+                {loadedRequests.length}
+                <span className="ml-1"> Request (s)</span>
+              </span>
+            </div>
             {loadedRequests.length > 0 && (
               <>
-                <div className=" flex  items-center w-[90%] mx-auto gap-x-3 ">
-                  <h2 className="text-lg  font-medium ">My Posted Jobs</h2>
-
-                  <span className="px-3 py-1 text-xs text-prime bg-blue-100 rounded-full ">
-                    {loadedRequests.length}{" "}
-                    <span className="ml-1"> Request (s)</span>
-                  </span>
-                </div>
-
                 {/* Table section */}
                 <div className="max-w-[22rem] xs:max-w-[23rem] md:max-w-5xl  mx-auto">
                   <div className="card w-full  shadow-2xl bg-base-100">
@@ -112,6 +113,7 @@ const MyRequest = () => {
                             <th>Title</th>
                             <th>No. of Volunteers</th>
                             <th>Deadline</th>
+                            <th>Status</th>
                             <th colSpan="2">Actions</th>
                           </tr>
                           <tr>
