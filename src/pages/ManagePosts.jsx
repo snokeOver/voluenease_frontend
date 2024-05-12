@@ -457,7 +457,7 @@ const ManagePosts = () => {
                     <div className="form-control">
                       <label className="label">
                         <span className="label-text text-lg">
-                          Short Description{" "}
+                          Short Description
                           <span className="text-red-500">*</span>
                         </span>
                       </label>

@@ -10,6 +10,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import AddPost from "../pages/AddPost";
 import PostDetails from "../pages/PostDetails";
 import ManagePosts from "../pages/ManagePosts";
+import MyRequest from "../pages/MyRequest";
 
 const router = createBrowserRouter([
   {
@@ -45,15 +46,20 @@ const router = createBrowserRouter([
         path: "/need-volunteer",
         element: <NeedVolunteer />,
       },
-      // {
-      //   path: "/spots-by-country/:country",
-      //   element: <SpotsByCountry />,
-      // },
+
       {
         path: "/manage-posts",
         element: (
           <PrivateRoutes>
             <ManagePosts />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/my-requests",
+        element: (
+          <PrivateRoutes>
+            <MyRequest />
           </PrivateRoutes>
         ),
       },

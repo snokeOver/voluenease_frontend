@@ -26,10 +26,11 @@ const PostDetails = () => {
   const [postCard, setPostCard] = useState({});
   const { id } = useParams();
   const [openModal, setOpenModal] = useState(false);
-
+  const [isApplied, setIsApplied] = useState(false);
   const [formData, setFormData] = useState({
-    id: "",
-    uid: "",
+    postId: "",
+    organizerId: "",
+    volunteerId: "",
     email: "",
     name: "",
     imageUrl: "",
@@ -45,6 +46,24 @@ const PostDetails = () => {
     status: "",
   });
 
+  // checks if this user already requested for this post
+  const checkRequest = async (postId) => {
+    const postData = {
+      postId: postId,
+      volunteerId: user.uid,
+    };
+    try {
+      setPageLoading(true);
+      const { data } = await sAxios.post(`/api/request-check`, postData);
+      setPageLoading(false);
+      setIsApplied(data.success);
+    } catch (err) {
+      console.log(err.response);
+      setPageLoading(false);
+      setIsApplied(false);
+    }
+  };
+
   // Get the Spots that this user added
   useEffect(() => {
     const getSingleData = async () => {
@@ -52,7 +71,8 @@ const PostDetails = () => {
         const { data } = await nsAxios.get(`/api/post/${id}`);
         if (data) {
           setPostCard(data);
-          setPageLoading(false);
+
+          checkRequest(data._id);
         } else {
           console.log(data);
           setPageLoading(false);
@@ -73,18 +93,24 @@ const PostDetails = () => {
     if (!user) {
       navigate("/login");
       return goToTop();
-    } else if (new Date(singlePost.deadline) < new Date()) {
+    } else if (
+      new Date(singlePost.deadline).setHours(0, 0, 0, 0) <
+      new Date().setHours(0, 0, 0, 0)
+    ) {
       return setToastMsg("Expired! Please find another !");
     } else if (singlePost.email === user.email) {
       return setToastMsg("You are not allowed !");
     } else if (singlePost.volunNumber < 1) {
       return setToastMsg("Requirement filled up, Find another !");
+    } else if (isApplied) {
+      return setToastMsg("You already applied for this post !");
     }
 
     setFormData((prevData) => ({
       ...prevData,
-      id: singlePost._id,
-      uid: singlePost.uid,
+      postId: singlePost._id,
+      organizerId: singlePost.uid,
+      volunteerId: user.uid,
       email: singlePost.email,
       name: singlePost.name,
       imageUrl: singlePost.imageUrl,
@@ -135,8 +161,7 @@ const PostDetails = () => {
             formData
           );
           if (data) {
-            // setPageUpdate(true);
-            setPageLoading(false);
+            checkRequest(formData.postId);
             setOpenModal(false);
             Swal.fire({
               background: currTheme === "dark" ? "#1f2937 " : "",
@@ -195,7 +220,8 @@ const PostDetails = () => {
                       Deadlines:
                     </span>
                     <span className=" text-primary text-lg font-semibold inline-block">
-                      {new Date(postCard.deadline) > new Date() ? (
+                      {new Date(postCard.deadline).setHours(0, 0, 0, 0) >=
+                      new Date().setHours(0, 0, 0, 0) ? (
                         `${postCard.deadline}`
                       ) : (
                         <p className="text-yellow-500">Expired</p>
