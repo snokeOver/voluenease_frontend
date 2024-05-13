@@ -26,6 +26,8 @@ const NeedVolunteer = () => {
   const [itemsPerPage, setItemsPerPage] = useState(6);
   const numberOfPages = Math.ceil(totalPostNumber / itemsPerPage);
   const pages = [...Array(numberOfPages).keys()];
+  const [prevDisabled, setPrevDisabled] = useState(true);
+  const [nextDisabled, setNextDisabled] = useState(false);
 
   const [layoutSelect, setLayoutSelect] = useState(false);
 
@@ -70,6 +72,15 @@ const NeedVolunteer = () => {
   const handlePrevious = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
+      setPrevDisabled(false);
+      setNextDisabled(false);
+    } else {
+      setPrevDisabled(true);
+      setNextDisabled(false);
+    }
+
+    if (currentPage === 2) {
+      setPrevDisabled(true);
     }
   };
 
@@ -77,6 +88,15 @@ const NeedVolunteer = () => {
   const handleNext = () => {
     if (currentPage < numberOfPages) {
       setCurrentPage(currentPage + 1);
+      setNextDisabled(false);
+      setPrevDisabled(false);
+    } else {
+      setNextDisabled(true);
+      setPrevDisabled(false);
+    }
+
+    if (currentPage + 1 === numberOfPages) {
+      setNextDisabled(true);
     }
   };
 
@@ -163,7 +183,7 @@ const NeedVolunteer = () => {
                   </fieldset>
                 </form>
                 <div onClick={() => setSearch("")}>
-                  <PrimaryButton textField="Reset Search" />
+                  <PrimaryButton textField="Reset" />
                 </div>
               </div>
             </div>
@@ -223,7 +243,7 @@ const NeedVolunteer = () => {
 
           <div className="text-center bg-base-100 py-3 px-1 md:p-3 md:py-14">
             {filteredArr.length > 0 ? (
-              layoutSelect ? (
+              !layoutSelect ? (
                 // Grid Format
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:px-5 group">
                   {filteredArr.map((post) => (
@@ -240,7 +260,7 @@ const NeedVolunteer = () => {
                   <div className="max-w-[22rem] xs:max-w-[23rem] md:max-w-5xl  mx-auto">
                     <div className="card w-full  shadow-2xl bg-base-100">
                       {/* Table for posts */}
-                      <div className="overflow-x-auto py-7 ">
+                      <div className="overflow-x-auto py-7 bg-base-300">
                         <table className="table">
                           {/* head */}
                           <thead>
@@ -287,6 +307,7 @@ const NeedVolunteer = () => {
           </div>
           <div className="flex justify-center my-12">
             <button
+              disabled={prevDisabled}
               onClick={handlePrevious}
               className="btn py-2 md:px-4  btn-primary btn-outline disabled:cursor-not-allowed disabled:text-gray-500"
             >
@@ -322,6 +343,7 @@ const NeedVolunteer = () => {
             ))}
 
             <button
+              disabled={nextDisabled}
               onClick={handleNext}
               className="btn py-2 md:px-4 btn-primary btn-outline disabled:cursor-not-allowed disabled:text-gray-500"
             >
@@ -349,6 +371,7 @@ const NeedVolunteer = () => {
                 onChange={(e) => {
                   setItemsPerPage(e.target.value);
                   setCurrentPage(1);
+                  setPrevDisabled(true);
                 }}
                 className="select select-bordered w-full border-primary"
               >

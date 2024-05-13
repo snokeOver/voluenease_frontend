@@ -142,21 +142,6 @@ const Navbar = () => {
                         <div className="absolute w-full h-[1px]  py-0 rounded-none bg-prime bottom-0  hover:bg-prime"></div>
                       ) : null}
                     </li>
-                    <li className="relative">
-                      <NavLink
-                        className={({ isActive }) =>
-                          `${
-                            isActive ? "text-prime" : "hover:text-prime"
-                          } mr-1 `
-                        }
-                        to="/my-requests"
-                      >
-                        My Requests
-                      </NavLink>
-                      {pathname === "/my-requests" ? (
-                        <div className="absolute w-full h-[1px]  py-0 rounded-none bg-prime bottom-0  hover:bg-prime"></div>
-                      ) : null}
-                    </li>
                   </ul>
                 </details>
               </li>
@@ -284,24 +269,10 @@ const Navbar = () => {
                     <span className="badge">10</span>
                   </NavLink>
                 </li>
-                <li>
-                  <NavLink
-                    to="/my-requests"
-                    className={({ isActive }) =>
-                      `${
-                        isActive
-                          ? "text-prime border-b border-prime"
-                          : "hover:text-prime "
-                      } w-full justify-between mb-2`
-                    }
-                  >
-                    My Requests
-                    <span className="badge">10</span>
-                  </NavLink>
-                </li>
+
                 <li
                   onClick={handleLogOut}
-                  className="bg-sky-400 hover:bg-sky-600 text-gray-100 rounded-2xl"
+                  className="bg-sky-400 hover:bg-sky-600 text-gray-100 rounded-2xl mt-4"
                 >
                   <a>Logout</a>
                 </li>

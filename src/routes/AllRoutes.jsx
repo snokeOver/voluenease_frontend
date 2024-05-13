@@ -9,8 +9,7 @@ import Join from "../pages/Join";
 import PrivateRoutes from "./PrivateRoutes";
 import AddPost from "../pages/AddPost";
 import PostDetails from "../pages/PostDetails";
-import ManagePosts from "../pages/ManagePosts";
-import MyRequest from "../pages/MyRequest";
+import ManageMyPosts from "../pages/ManageMyPosts";
 
 const router = createBrowserRouter([
   {
@@ -51,18 +50,11 @@ const router = createBrowserRouter([
         path: "/manage-posts",
         element: (
           <PrivateRoutes>
-            <ManagePosts />
+            <ManageMyPosts />
           </PrivateRoutes>
         ),
       },
-      {
-        path: "/my-requests",
-        element: (
-          <PrivateRoutes>
-            <MyRequest />
-          </PrivateRoutes>
-        ),
-      },
+
       {
         path: "/add-volunteer-post",
         element: (
