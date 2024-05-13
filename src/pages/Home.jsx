@@ -3,6 +3,7 @@ import { goToTop } from "../helper/goToTop";
 import GoToTopBtn from "../components/shared/GoToTopBtn";
 import Banner from "../components/home/Banner";
 import NeedVolunteersNow from "../components/home/NeedVolunteersNow";
+import WhatMakeUsDifferent from "../components/home/WhatMakeUsDifferent";
 
 const Home = () => {
   return (
@@ -16,7 +17,7 @@ const Home = () => {
         <div className="md:container mx-auto">
           <NeedVolunteersNow />
         </div>
-        {/* <MarqueeSection /> */}
+        <WhatMakeUsDifferent />
 
         <div className="md:container mx-auto">{/* <CountrySection /> */}</div>
         {/* <HowWeHelpSection /> */}
