@@ -245,7 +245,7 @@ const NeedVolunteer = () => {
             {filteredArr.length > 0 ? (
               !layoutSelect ? (
                 // Grid Format
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:px-5 group">
+                <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-10 md:px-5 group">
                   {filteredArr.map((post) => (
                     <VolunPostCard
                       key={post._id}

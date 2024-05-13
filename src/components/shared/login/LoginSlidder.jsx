@@ -24,14 +24,14 @@ const LoginSlidder = () => {
           disableOnInteraction: false,
         }}
         modules={[Autoplay, EffectCards]}
-        className="mySwiper  w-[20rem]  lg:w-[35rem] h-40 md:h-56 xl:h-72"
+        className="mySwiper  w-[14.5rem]  lg:w-[35rem] h-40 md:h-56 xl:h-72"
       >
         {slidderImages.map((image) => (
           <SwiperSlide key={image._id}>
             <img
               src={image.image_url}
               alt={image.title}
-              className="w-full h-auto rounded-bl-md rounded-tr-md rounded-br-[2rem] rounded-tl-[2rem] lg:rounded-br-[3.5rem] lg:rounded-tl-[3.5rem]  shadow-none"
+              className="w-full h-auto rounded-bl-md rounded-tr-md rounded-br-[1rem] rounded-tl-[1rem] lg:rounded-br-[3.5rem] lg:rounded-tl-[3.5rem]  shadow-none"
             />
           </SwiperSlide>
         ))}

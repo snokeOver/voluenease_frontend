@@ -1,30 +1,31 @@
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
-import DatePicker from "react-datepicker";
-import { FaLock } from "react-icons/fa";
 import "react-datepicker/dist/react-datepicker.css";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
 import useData from "../hooks/useData";
 import useAuth from "../hooks/useAuth";
 import useSAxios from "../hooks/useSAxios";
 import PageSkeleton from "../components/shared/PageSkeleton";
-import SinglePost from "../manageMyPost/SinglePost";
-import PrimaryButton from "../components/shared/PrimaryButton";
 import GoToTopBtn from "../components/shared/GoToTopBtn";
-import ActionButton from "../components/shared/ActionButton";
 import ManagePosts from "../manageMyPost/ManagePosts";
 import MyRequest from "../manageMyPost/MyRequest";
 
 const ManageMyPosts = () => {
   const { user } = useAuth();
   const sAxios = useSAxios();
-  const { setPageLoading, pageLoading, currTheme, getPosts } = useData();
-  const [startDate, setStartDate] = useState(new Date());
-  const [loadedPosts, setLoadedPosts] = useState([]);
-  const [openModal, setOpenModal] = useState(false);
+  const {
+    setPageLoading,
+    pageLoading,
+    currTheme,
+    getPosts,
+    getAllVolunteerRequests,
+    getPostsOfOrganizer,
+    loadedPosts,
+    loadedRequests,
+  } = useData();
 
-  const [loadedRequests, setLoadedRequests] = useState([]);
+  const [startDate, setStartDate] = useState(new Date());
+  const [openModal, setOpenModal] = useState(false);
 
   const [formData, setFormData] = useState({
     id: "",
@@ -39,18 +40,6 @@ const ManageMyPosts = () => {
     visitors_per_year: "",
   });
   // Request Related
-  // Get the Posts that this organizer added
-  const getAllVolunteerRequests = async () => {
-    try {
-      setPageLoading(true);
-      const { data } = await sAxios.get(`/api/volunteer-requests/${user.uid}`);
-      setLoadedRequests(data);
-      setPageLoading(false);
-    } catch (err) {
-      console.log(err.response);
-      setPageLoading(false);
-    }
-  };
 
   useEffect(() => {
     if (user) {
@@ -100,24 +89,6 @@ const ManageMyPosts = () => {
     const options = { day: "2-digit", month: "short", year: "numeric" };
     const formattedDate = deadline.toLocaleDateString("en-GB", options);
     return formattedDate.replace(/ /g, "-");
-  };
-
-  // Get the Posts that this organizer added
-  const getPostsOfOrganizer = async () => {
-    try {
-      setPageLoading(true);
-      const { data } = await sAxios.get(`/api/organizer-posts/${user.uid}`);
-      if (data) {
-        setLoadedPosts(data);
-        setPageLoading(false);
-      } else {
-        console.log(data);
-        setPageLoading(false);
-      }
-    } catch (err) {
-      console.log(err.response);
-      setPageLoading(false);
-    }
   };
 
   useEffect(() => {

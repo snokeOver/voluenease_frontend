@@ -14,6 +14,11 @@ const DataProvider = ({ children }) => {
   const [toastMsg, setToastMsg] = useState("");
   const [slidderImages, setSlidderImages] = useState([]);
   const [posts, setPosts] = useState([]);
+  const [totalPost, setTotalPost] = useState(0);
+  const [totalRequest, setTotalRequest] = useState(0);
+
+  const [loadedPosts, setLoadedPosts] = useState([]);
+  const [loadedRequests, setLoadedRequests] = useState([]);
 
   // function to Save the user preferences like theme-mood into MongoDb
   const storeUserPreference = async () => {
@@ -32,6 +37,44 @@ const DataProvider = ({ children }) => {
       }
     } catch (err) {
       console.log(err.response);
+    }
+  };
+
+  // Get the Posts that this organizer added
+  const getAllVolunteerRequests = async () => {
+    try {
+      setPageLoading(true);
+      const { data } = await nsAxios.get(
+        `/api/volunteer-requests/${user.uid}`,
+        { withCredentials: true }
+      );
+      setLoadedRequests(data);
+      setTotalRequest(data.length);
+      setPageLoading(false);
+    } catch (err) {
+      console.log(err.response);
+      setPageLoading(false);
+    }
+  };
+
+  // Get the Posts that this organizer added
+  const getPostsOfOrganizer = async () => {
+    try {
+      setPageLoading(true);
+      const { data } = await nsAxios.get(`/api/organizer-posts/${user.uid}`, {
+        withCredentials: true,
+      });
+      if (data) {
+        setLoadedPosts(data);
+        setTotalPost(data.length);
+        setPageLoading(false);
+      } else {
+        console.log(data);
+        setPageLoading(false);
+      }
+    } catch (err) {
+      console.log(err.response);
+      setPageLoading(false);
     }
   };
 
@@ -119,6 +162,14 @@ const DataProvider = ({ children }) => {
     slidderImages,
     posts,
     getPosts,
+    totalPost,
+    totalRequest,
+    loadedPosts,
+    setLoadedPosts,
+    loadedRequests,
+    setLoadedRequests,
+    getAllVolunteerRequests,
+    getPostsOfOrganizer,
   };
 
   return (

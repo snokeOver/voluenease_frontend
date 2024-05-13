@@ -232,7 +232,7 @@ const Login = () => {
           </div>
           <div
             id="login_img"
-            className="bg-cover h-[920px] bg-no-repeat flex flex-col gap-7 justify-center items-center flex-1 py-5"
+            className="bg-cover mx-5 h-[920px] bg-no-repeat flex flex-col gap-7 justify-center items-center flex-1 py-5 "
           >
             <SideSectionWithSlidder writings="Find a category to be volunteer" />
           </div>

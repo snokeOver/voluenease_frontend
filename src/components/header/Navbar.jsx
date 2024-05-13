@@ -8,7 +8,7 @@ import { useState } from "react";
 
 const Navbar = () => {
   const { user, loading } = useAuth();
-  const { pageLoading } = useData();
+  const { pageLoading, totalPost, totalRequest } = useData();
   const logOut = useLogOut();
 
   const { pathname } = useLocation();
@@ -258,15 +258,22 @@ const Navbar = () => {
                   <NavLink
                     to="/manage-posts"
                     className={({ isActive }) =>
-                      `${
-                        isActive
-                          ? "text-prime border-b border-prime"
-                          : "hover:text-prime "
-                      } w-full justify-between`
+                      ` w-full justify-between hover:text-prime`
                     }
                   >
                     My Post
-                    <span className="badge">10</span>
+                    <span className="badge">{totalPost}</span>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/manage-posts"
+                    className={({ isActive }) =>
+                      ` w-full justify-between hover:text-prime`
+                    }
+                  >
+                    My Requests
+                    <span className="badge">{totalRequest}</span>
                   </NavLink>
                 </li>
 
