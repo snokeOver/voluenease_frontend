@@ -20,27 +20,10 @@ const Footer = () => {
   }, [toastMsg]);
   return (
     <footer className=" p-10 bg-blue-100 dark:bg-base-100 text-base-content rounded-t-[2rem] md:rounded-t-[3rem] lg:rounded-t-[3.5rem] border-t-[1px] border-primary ">
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-10 ">
-        <div className="footer  flex md:justify-center">
-          <nav>
-            <h6 className="footer-title">Services</h6>
-            <NavLink className="link link-hover" to="#">
-              Tour Location
-            </NavLink>
-            <NavLink className="link link-hover" to="#">
-              Tour Guid
-            </NavLink>
-            <NavLink className="link link-hover" to="#">
-              Tour Booking
-            </NavLink>
-            <NavLink className="link link-hover" to="#">
-              Customer Services
-            </NavLink>
-          </nav>
-        </div>
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-10 ">
         <div className="footer flex md:justify-center">
           <nav>
-            <h6 className="footer-title">Company</h6>
+            <h6 className="footer-title">Organization</h6>
 
             <NavLink className="link link-hover" to="/about">
               About Us
@@ -48,8 +31,8 @@ const Footer = () => {
             <NavLink className="link link-hover" to="/contact">
               Contact
             </NavLink>
-            <NavLink className="link link-hover" to="/branches">
-              Our Branches
+            <NavLink className="link link-hover" to="#">
+              Testimony
             </NavLink>
             <NavLink className="link link-hover" to="#">
               Terms of use
@@ -60,14 +43,14 @@ const Footer = () => {
           <nav>
             <h6 className="footer-title">Quick Links</h6>
 
-            <NavLink className="link link-hover" to="#">
-              My Account
+            <NavLink className="link link-hover" to="/my-requests">
+              My Requests
             </NavLink>
-            <NavLink className="link link-hover" to="/my-list">
-              My List
+            <NavLink className="link link-hover" to="/manage-posts">
+              My Posts
             </NavLink>
-            <NavLink className="link link-hover" to="/cart">
-              Cart
+            <NavLink className="link link-hover" to="/profile">
+              Profile
             </NavLink>
             <NavLink className="link link-hover" to="#">
               Promotions

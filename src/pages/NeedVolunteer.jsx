@@ -1,16 +1,17 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import useData from "../hooks/useData";
 import { useEffect, useState } from "react";
 import PageSkeleton from "../components/shared/PageSkeleton";
 import SectionTitle from "../components/shared/SectionTitle";
-
+import { TfiLayoutGrid3, TfiLayoutMenuV } from "react-icons/tfi";
 import { IoIosSearch } from "react-icons/io";
 import GoToTopBtn from "../components/shared/GoToTopBtn";
 import VolunPostCard from "../components/needVolun/VolunPostCard";
 import { goToTop } from "../helper/goToTop";
 import useAxios from "../hooks/useAxios";
 import PrimaryButton from "../components/shared/PrimaryButton";
+import VolunTableCard from "../components/needVolun/VolunTableCard";
 
 const NeedVolunteer = () => {
   const { pageLoading, setPageLoading } = useData();
@@ -25,6 +26,8 @@ const NeedVolunteer = () => {
   const [itemsPerPage, setItemsPerPage] = useState(6);
   const numberOfPages = Math.ceil(totalPostNumber / itemsPerPage);
   const pages = [...Array(numberOfPages).keys()];
+
+  const [layoutSelect, setLayoutSelect] = useState(false);
 
   // Get the number of All Posts from the database
   useEffect(() => {
@@ -135,70 +138,145 @@ const NeedVolunteer = () => {
             title="You Can Be The Volunteer"
             subTitle="Volunteering is an act of selflessness and compassion, where individuals offer their time, skills."
           />
-          {/* Sort Functionality */}
-          <div className="flex gap-5 justify-center items-center">
-            <form onSubmit={handleSearch} className="w-fit">
-              <fieldset className="form-control w-full">
-                <div className=" relative text-gray-400 text-xl font-semibold">
-                  <input
-                    type="text"
-                    name="searchVal"
-                    placeholder="Search . . . "
-                    className="input input-bordered w-full  bg-transparent rounded-md  placeholder-gray-600 dark:placeholder-gray-100 border-prime"
-                  />
-                  <IoIosSearch
-                    onClick={handleSearch}
-                    className="absolute cursor-pointer hover:text-prime right-5  top-4"
+
+          {/* navigation bar */}
+
+          <div className="flex items-center flex-col lg:flex-row gap-4 justify-between min-h-0 bg-blue-200 dark:bg-gray-800 rounded-lg w-[98%] lg:w-[90%] mx-auto py-5 lg:py-0 px-5">
+            {/* start part */}
+
+            <div className="flex">
+              <div className="flex gap-5 justify-center items-center">
+                <form onSubmit={handleSearch} className="w-fit">
+                  <fieldset className="form-control w-full">
+                    <div className=" relative text-gray-400 text-xl font-semibold">
+                      <input
+                        type="text"
+                        name="searchVal"
+                        placeholder="Search . . . "
+                        className="input search-input  w-full py-2 bg-transparent rounded-md  placeholder-gray-600 dark:placeholder-gray-100 border-prime"
+                      />
+                      <IoIosSearch
+                        onClick={handleSearch}
+                        className="absolute cursor-pointer hover:text-prime right-5  top-3"
+                      />
+                    </div>
+                  </fieldset>
+                </form>
+                <div onClick={() => setSearch("")}>
+                  <PrimaryButton textField="Reset Search" />
+                </div>
+              </div>
+            </div>
+            {/* End part */}
+            <div className="flex items-center gap-10">
+              <div className="flex flex-col lg:flex-row">
+                <ul className="menu menu-horizontal px-1">
+                  <li>
+                    <details>
+                      <summary className="px-14 bg-prime dark:hover:bg-sky-600 hover:bg-sky-600 text-gray-100 w-full">
+                        Sorted By
+                      </summary>
+                      <ul className="p-2 rounded-t-none rounded-b-lg z-50 w-full">
+                        <li
+                          className=" hover:border-b-2 rounded-none hover:border-prime dark:hover:hover:border-prime mr-2"
+                          onClick={() => handleFilterSpot("deadline")}
+                        >
+                          <a>Deadline</a>
+                        </li>
+                        <li
+                          className=" hover:border-b-2 rounded-none hover:border-prime dark:hover:hover:border-prime mr-2"
+                          onClick={() => handleFilterSpot("number")}
+                        >
+                          <a>Volunteer Number</a>
+                        </li>
+                        <li
+                          className=" hover:border-b-2 rounded-none hover:border-prime dark:hover:hover:border-prime mr-2"
+                          onClick={() => handleFilterSpot("reset")}
+                        >
+                          <a>Reset Sort</a>
+                        </li>
+                      </ul>
+                    </details>
+                  </li>
+                </ul>
+              </div>
+              <div className="flex gap-4">
+                <div>
+                  <TfiLayoutGrid3
+                    onClick={() => setLayoutSelect(false)}
+                    className={`cursor-pointer hover:text-primary text-2xl ${
+                      !layoutSelect ? "text-primary" : ""
+                    }`}
                   />
                 </div>
-              </fieldset>
-            </form>
-            <div onClick={() => setSearch("")}>
-              <PrimaryButton textField="Reset Search" />
+                <div>
+                  <TfiLayoutMenuV
+                    onClick={() => setLayoutSelect(true)}
+                    className={`cursor-pointer hover:text-primary text-2xl ${
+                      layoutSelect ? "text-primary" : ""
+                    }`}
+                  />
+                </div>
+              </div>
             </div>
           </div>
-          <div className="flex  justify-center text-center my-5">
-            <ul className="menu w-fit">
-              <li className=" ">
-                <details className=" rounded-md text-gray-50 font-semibold ">
-                  <summary className="px-16 md:px-10 bg-prime dark:hover:bg-sky-600 hover:bg-sky-600 mb-1">
-                    Sorted By
-                  </summary>
-                  <ul className="bg-gray-600  mx-auto  rounded-t-none rounded-b-lg py-2">
-                    <li
-                      className=" hover:border-b-2 rounded-none hover:border-prime dark:hover:hover:border-prime mr-2"
-                      onClick={() => handleFilterSpot("deadline")}
-                    >
-                      <a>Deadline</a>
-                    </li>
-                    <li
-                      className=" hover:border-b-2 rounded-none hover:border-prime dark:hover:hover:border-prime mr-2"
-                      onClick={() => handleFilterSpot("number")}
-                    >
-                      <a>Volunteer Number</a>
-                    </li>
-                    <li
-                      className=" hover:border-b-2 rounded-none hover:border-prime dark:hover:hover:border-prime mr-2"
-                      onClick={() => handleFilterSpot("reset")}
-                    >
-                      <a>Reset Sort</a>
-                    </li>
-                  </ul>
-                </details>
-              </li>
-            </ul>
-          </div>
+
           <div className="text-center bg-base-100 py-3 px-1 md:p-3 md:py-14">
             {filteredArr.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:px-5 group">
-                {filteredArr.map((post) => (
-                  <VolunPostCard
-                    key={post._id}
-                    post={post}
-                    handleShowDetailsBtn={handleShowDetailsBtn}
-                  />
-                ))}
-              </div>
+              layoutSelect ? (
+                // Grid Format
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 md:px-5 group">
+                  {filteredArr.map((post) => (
+                    <VolunPostCard
+                      key={post._id}
+                      post={post}
+                      handleShowDetailsBtn={handleShowDetailsBtn}
+                    />
+                  ))}
+                </div>
+              ) : (
+                <>
+                  {/* Table Format */}
+                  <div className="max-w-[22rem] xs:max-w-[23rem] md:max-w-5xl  mx-auto">
+                    <div className="card w-full  shadow-2xl bg-base-100">
+                      {/* Table for posts */}
+                      <div className="overflow-x-auto py-7 ">
+                        <table className="table">
+                          {/* head */}
+                          <thead>
+                            <tr className="text-left">
+                              <th></th>
+                              <th>Title</th>
+                              <th>No. of Volunteers</th>
+                              <th>Deadline</th>
+                              <th>Location</th>
+                              <th>Category</th>
+                              <th colSpan="2" className="text-center">
+                                Action
+                              </th>
+                            </tr>
+                            <tr>
+                              <th colSpan="8">
+                                <div className="divider -my-3"></div>
+                              </th>
+                            </tr>
+                          </thead>
+
+                          <tbody>
+                            {filteredArr.map((post, index) => (
+                              <VolunTableCard
+                                index={index}
+                                key={post._id}
+                                post={post}
+                              />
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )
             ) : (
               <div>
                 <h2 className="text-3xl text-yellow-400">
