@@ -234,7 +234,7 @@ const Login = () => {
             id="login_img"
             className="bg-cover h-[920px] bg-no-repeat flex flex-col gap-7 justify-center items-center flex-1 py-5"
           >
-            <SideSectionWithSlidder writings="Find your dream holidy spot" />
+            <SideSectionWithSlidder writings="Find a category to be volunteer" />
           </div>
         </div>
       </div>

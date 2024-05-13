@@ -58,6 +58,7 @@ const AddPost = () => {
       }));
     }
   }, [user]);
+
   // This should handle submission of form
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -110,6 +111,7 @@ const AddPost = () => {
       description: "",
       volunNumber: "",
     }));
+    setStartDate(new Date());
   };
 
   return (

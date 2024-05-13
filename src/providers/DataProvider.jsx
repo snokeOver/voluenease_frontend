@@ -35,7 +35,7 @@ const DataProvider = ({ children }) => {
     }
   };
 
-  // Get the Volunteers post from DB for Need volunteers section
+  // Get the Volunteers post from DB for Need volunteers section at home page
   const getPosts = async () => {
     try {
       setPageLoading(true);

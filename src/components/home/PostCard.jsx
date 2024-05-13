@@ -44,7 +44,7 @@ const PostCard = ({ post, handleShowDetailsBtn }) => {
         <div className="pt-3 w-full">
           <button
             onClick={() => handleShowDetailsBtn(_id)}
-            className="btn btn-primary btn-outline flex-1   py-3 mb-3  rounded-md w-full"
+            className="btn btn-primary btn-outline flex-1 py-3 mb-3  rounded-md w-full"
           >
             <BsFillEyeFill className="text-xl" />
             View Details
