@@ -4,6 +4,7 @@ import GoToTopBtn from "../components/shared/GoToTopBtn";
 import Banner from "../components/home/Banner";
 import NeedVolunteersNow from "../components/home/NeedVolunteersNow";
 import WhatMakeUsDifferent from "../components/home/WhatMakeUsDifferent";
+import AwardSection from "../components/home/AwardSection";
 
 const Home = () => {
   return (
@@ -19,8 +20,9 @@ const Home = () => {
         </div>
         <WhatMakeUsDifferent />
 
-        <div className="md:container mx-auto">{/* <CountrySection /> */}</div>
-        {/* <HowWeHelpSection /> */}
+        <div className="md:container mx-auto">
+          <AwardSection />
+        </div>
       </div>
       <GoToTopBtn />
     </>

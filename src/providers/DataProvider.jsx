@@ -20,6 +20,7 @@ const DataProvider = ({ children }) => {
   const [loadedPosts, setLoadedPosts] = useState([]);
   const [loadedRequests, setLoadedRequests] = useState([]);
   const [whyUsData, setWhyUsData] = useState([]);
+  const [awardData, setAwardData] = useState([]);
 
   // function to Save the user preferences like theme-mood into MongoDb
   const storeUserPreference = async () => {
@@ -86,6 +87,21 @@ const DataProvider = ({ children }) => {
       const response = await nsAxios.get(`/api/why-us`);
       if (response.data) {
         setWhyUsData(response.data);
+        setPageLoading(false);
+      }
+    } catch (err) {
+      console.log(err.response);
+      setPageLoading(false);
+    }
+  };
+
+  // get all the Award data from DB
+  const getAwardData = async () => {
+    try {
+      setPageLoading(true);
+      const response = await nsAxios.get(`/api/award`);
+      if (response.data) {
+        setAwardData(response.data);
         setPageLoading(false);
       }
     } catch (err) {
@@ -188,6 +204,8 @@ const DataProvider = ({ children }) => {
     getPostsOfOrganizer,
     getWhyUsData,
     whyUsData,
+    awardData,
+    getAwardData,
   };
 
   return (
