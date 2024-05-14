@@ -19,7 +19,13 @@ const VolunPostCard = ({ post, handleShowDetailsBtn }) => {
         <div className="grid grid-cols-2 flex-grow  py-3 text-message-color">
           <div className="flex flex-col items-center gap-2 text-center">
             <FaPeopleLine className="text-2xl" />
-            <h3>{volunNumber}</h3>
+            <h3>
+              {volunNumber > 0 ? (
+                volunNumber
+              ) : (
+                <p className="text-yellow-500">Filled</p>
+              )}
+            </h3>
           </div>
           <div className="flex flex-col items-center gap-2 text-center">
             <CiCalendarDate className="text-xl" />

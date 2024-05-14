@@ -38,7 +38,7 @@ const MyRequest = ({ handleDeleteRequest, loadedRequests }) => {
           <>
             {/* Table section */}
             <div className="max-w-[21rem] xs:max-w-[23rem] md:max-w-5xl  mx-auto">
-              <div className="card w-full  shadow-2xl bg-base-100 bg-base-300">
+              <div className="card w-full  shadow-2xl bg-base-300">
                 {/* Table for cart */}
                 <div className="overflow-x-auto py-7 ">
                   <table className="table">

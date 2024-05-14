@@ -246,12 +246,12 @@ const AddPost = () => {
                       Deadline <span className="text-red-500">*</span>
                     </span>
                   </label>
-                  <label className="input input-bordered flex items-center gap-2 border-prime">
-                    <DatePicker
-                      selected={startDate}
-                      onChange={(date) => setStartDate(date)}
-                    />
-                  </label>
+
+                  <DatePicker
+                    className="input input-bordered flex items-center gap-2 border-prime w-full"
+                    selected={startDate}
+                    onChange={(date) => setStartDate(date)}
+                  />
                 </div>
               </div>
 
@@ -262,7 +262,7 @@ const AddPost = () => {
                   <label className="label">
                     <span className="label-text text-lg">Organizer Name</span>
                   </label>
-                  <label className="input input-bordered flex items-center gap-2 border-prime relative">
+                  <label className="input input-bordered flex items-center gap-2 relative">
                     <input
                       readOnly
                       type="text"
@@ -278,7 +278,7 @@ const AddPost = () => {
                   <label className="label">
                     <span className="label-text text-lg">Organizer Email</span>
                   </label>
-                  <label className="input input-bordered flex items-center gap-2 border-prime relative">
+                  <label className="input input-bordered flex items-center gap-2 relative">
                     <input
                       readOnly
                       type="email"

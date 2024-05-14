@@ -3,15 +3,26 @@ const MyRequestCard = ({ sPost, index, handleDeleteRequest }) => {
   const { title, volunNumber, deadline, postId, status, imageUrl } = sPost;
   return (
     <>
-      <tr
-        className={`cursor-pointer dark:hover:bg-gray-800 hover:bg-gray-200 my_tooltip_${index}`}
-      >
+      <tr className="cursor-pointer dark:hover:bg-gray-800 hover:bg-gray-200 ">
         <th>{index + 1}</th>
-        <td>{title}</td>
-        <td>{volunNumber}</td>
-        <td>{deadline}</td>
+        <td className={`my_tooltip_${index}`}>{title}</td>
+        <td>
+          {volunNumber > 0 ? (
+            volunNumber
+          ) : (
+            <p className="text-yellow-500">Filled</p>
+          )}
+        </td>
+        <td>
+          {new Date(deadline).setHours(0, 0, 0, 0) >=
+          new Date().setHours(0, 0, 0, 0) ? (
+            `${deadline}`
+          ) : (
+            <p className="text-yellow-500">Expired</p>
+          )}
+        </td>
         <td>{status}</td>
-        <td className="">
+        <td className="cancel_btn_tooltip">
           <button
             onClick={() => handleDeleteRequest(postId)}
             className="text-gray-500 transition-colors duration-200   hover:text-red-500 focus:outline-none"
@@ -43,6 +54,14 @@ const MyRequestCard = ({ sPost, index, handleDeleteRequest }) => {
           src={imageUrl}
           alt=""
         />
+      </Tooltip>
+      <Tooltip
+        anchorSelect=".cancel_btn_tooltip"
+        place="bottom"
+        className="z-50"
+        variant="warning"
+      >
+        <p>Cancel</p>
       </Tooltip>
     </>
   );

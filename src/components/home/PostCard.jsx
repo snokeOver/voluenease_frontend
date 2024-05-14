@@ -30,7 +30,13 @@ const PostCard = ({ post, handleShowDetailsBtn }) => {
           </div>
           <div className="flex md:flex-col items-center gap-2 text-center">
             <FaPeopleLine className="text-3xl" />
-            <h3>{volunNumber}</h3>
+            <h3>
+              {volunNumber > 0 ? (
+                volunNumber
+              ) : (
+                <p className="text-yellow-500">Filled</p>
+              )}
+            </h3>
           </div>
           <div className="flex md:flex-col items-center gap-2 text-center">
             <CiCalendarDate className="text-3xl" />

@@ -10,6 +10,9 @@ import PrivateRoutes from "./PrivateRoutes";
 import AddPost from "../pages/AddPost";
 import PostDetails from "../pages/PostDetails";
 import ManageMyPosts from "../pages/ManageMyPosts";
+import About from "../pages/About";
+import Contact from "../pages/Contact";
+import UserProfile from "../pages/UserProfile";
 
 const router = createBrowserRouter([
   {
@@ -21,26 +24,23 @@ const router = createBrowserRouter([
         path: "/",
         element: <Home />,
       },
-      // {
-      //   path: "/about",
-      //   element: <About />,
-      // },
-      // {
-      //   path: "/branches",
-      //   element: <Branches />,
-      // },
-      // {
-      //   path: "/contact",
-      //   element: <Contact />,
-      // },
-      // {
-      //   path: "/user-profile",
-      //   element: (
-      //     <PrivateRoutes>
-      //       <UserProfile />
-      //     </PrivateRoutes>
-      //   ),
-      // },
+      {
+        path: "/about",
+        element: <About />,
+      },
+
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
+        path: "/user-profile",
+        element: (
+          <PrivateRoutes>
+            <UserProfile />
+          </PrivateRoutes>
+        ),
+      },
       {
         path: "/need-volunteer",
         element: <NeedVolunteer />,

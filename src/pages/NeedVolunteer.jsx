@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import useData from "../hooks/useData";
 import { useEffect, useState } from "react";
@@ -288,6 +288,7 @@ const NeedVolunteer = () => {
                                 index={index}
                                 key={post._id}
                                 post={post}
+                                handleShowDetailsBtn={handleShowDetailsBtn}
                               />
                             ))}
                           </tbody>
@@ -305,81 +306,96 @@ const NeedVolunteer = () => {
               </div>
             )}
           </div>
-          <div className="flex justify-center my-12">
-            <button
-              disabled={prevDisabled}
-              onClick={handlePrevious}
-              className="btn py-2 md:px-4  btn-primary btn-outline disabled:cursor-not-allowed disabled:text-gray-500"
-            >
-              <div className="flex items-center -mx-1">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6 mx-1 rtl:-scale-x-100"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M7 16l-4-4m0 0l4-4m-4 4h18"
-                  />
-                </svg>
-
-                <span className="hidden lg:flex">Previous</span>
-              </div>
-            </button>
-
-            {pages.map((page) => (
-              <button
-                onClick={() => setCurrentPage(page + 1)}
-                key={page}
-                className={`btn mx-1 bg-transparent
+          <div className="flex flex-col gap-5 justify-center items-center my-12">
+            <div className="flex gap-3">
+              {/* Page Button */}
+              {pages.map((page) =>
+                (page === currentPage - 2 && page !== 0) ||
+                page === currentPage - 1 ||
+                page === currentPage ||
+                page === numberOfPages - 1 ? (
+                  <button
+                    onClick={() => setCurrentPage(page + 1)}
+                    key={page}
+                    className={`btn bg-transparent rounded-full py-2 px-3
                   ${currentPage === page + 1 ? "border border-primary" : ""}`}
+                  >
+                    {page + 1}
+                  </button>
+                ) : (
+                  <p key={page} className="text-3xl">
+                    <sup>.</sup>
+                  </p>
+                )
+              )}
+            </div>
+            <div className="flex gap-3">
+              {/* Previous Button */}
+              <button
+                disabled={prevDisabled}
+                onClick={handlePrevious}
+                className="btn py-2 md:px-4  btn-primary btn-outline disabled:cursor-not-allowed disabled:text-gray-500"
               >
-                {page + 1}
-              </button>
-            ))}
+                <div className="flex items-center -mx-1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-6 h-6 mx-1 rtl:-scale-x-100"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M7 16l-4-4m0 0l4-4m-4 4h18"
+                    />
+                  </svg>
 
-            <button
-              disabled={nextDisabled}
-              onClick={handleNext}
-              className="btn py-2 md:px-4 btn-primary btn-outline disabled:cursor-not-allowed disabled:text-gray-500"
-            >
-              <div className="flex items-center -mx-1">
-                <span className="hidden lg:flex">Next</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="w-6 h-6 mx-1 rtl:-scale-x-100"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
+                  <span className="hidden lg:flex">Previous</span>
+                </div>
+              </button>
+              {/* Select Items per page */}
+              <div className="ml-2">
+                <select
+                  value={itemsPerPage}
+                  onChange={(e) => {
+                    setItemsPerPage(e.target.value);
+                    setCurrentPage(1);
+                    setPrevDisabled(true);
+                  }}
+                  className="select select-bordered w-full border-primary"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
-                </svg>
+                  <option value="3">3</option>
+                  <option value="6">6</option>
+                  <option value="12">12</option>
+                  <option value="15">15</option>
+                </select>
               </div>
-            </button>
-            <div className="ml-2">
-              <select
-                value={itemsPerPage}
-                onChange={(e) => {
-                  setItemsPerPage(e.target.value);
-                  setCurrentPage(1);
-                  setPrevDisabled(true);
-                }}
-                className="select select-bordered w-full border-primary"
+              {/* Next Button */}
+              <button
+                disabled={nextDisabled}
+                onClick={handleNext}
+                className="btn py-2 md:px-4 btn-primary btn-outline disabled:cursor-not-allowed disabled:text-gray-500"
               >
-                <option value="3">3</option>
-                <option value="6">6</option>
-                <option value="12">12</option>
-                <option value="15">15</option>
-              </select>
+                <div className="flex items-center -mx-1">
+                  <span className="hidden lg:flex">Next</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="w-6 h-6 mx-1 rtl:-scale-x-100"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </div>
+              </button>
             </div>
           </div>
         </div>

@@ -12,7 +12,6 @@ const Navbar = () => {
   const logOut = useLogOut();
 
   const { pathname } = useLocation();
-  const [isHovering, setIsHovering] = useState(false);
 
   const fallbackPPUrl = "https://i.ibb.co/vxg6nY4/user.png";
 
@@ -58,7 +57,7 @@ const Navbar = () => {
       <li>
         <details>
           <summary>Organization</summary>
-          <ul className="p-2 rounded-t-none rounded-b-md">
+          <ul className="p-2 rounded-t-none rounded-b-md z-50">
             <li className="relative">
               <NavLink
                 className={({ isActive }) =>
@@ -72,19 +71,7 @@ const Navbar = () => {
                 <div className="absolute w-full h-[1px]  py-0 rounded-none bg-prime bottom-0  hover:bg-prime"></div>
               ) : null}
             </li>
-            <li className="relative">
-              <NavLink
-                className={({ isActive }) =>
-                  `${isActive ? "text-prime" : "hover:text-prime"} mr-1 `
-                }
-                to="/branches"
-              >
-                Branches
-              </NavLink>
-              {pathname === "/branches" ? (
-                <div className="absolute w-full h-[1px]  py-0 rounded-none bg-prime bottom-0  hover:bg-prime"></div>
-              ) : null}
-            </li>
+
             <li className="relative">
               <NavLink
                 className={({ isActive }) =>
@@ -111,7 +98,7 @@ const Navbar = () => {
               <li>
                 <details>
                   <summary>My Profile</summary>
-                  <ul className="p-2 rounded-t-none rounded-b-md w-[9rem]">
+                  <ul className="p-2 rounded-t-none rounded-b-md w-[9rem] z-50">
                     <li className="relative">
                       <NavLink
                         className={({ isActive }) =>
@@ -213,21 +200,12 @@ const Navbar = () => {
                 role="button"
                 className="btn btn-ghost btn-circle avatar"
               >
-                <div
-                  className="w-8 rounded-full"
-                  onMouseEnter={() => setIsHovering(true)}
-                  onMouseLeave={() => setIsHovering(false)}
-                >
+                <div className="w-8 rounded-full">
                   <img
                     alt="User Photo"
                     src={user.photoURL || fallbackPPUrl}
                     onError={handleImageError}
                   />
-                  {isHovering && (
-                    <div className="absolute  -top-4 text-xs  z-10">
-                      <h3> {user.displayName}</h3>
-                    </div>
-                  )}
                 </div>
               </div>
               <ul

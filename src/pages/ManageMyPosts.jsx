@@ -61,7 +61,9 @@ const ManageMyPosts = () => {
       if (result.isConfirmed) {
         try {
           setPageLoading(true);
-          const response = await sAxios.delete(`/api/delete-request/${id}`);
+          const response = await sAxios.delete(`/api/delete-request/${id}`, {
+            params: { uid: user?.uid },
+          });
           if (response.data) {
             setPageLoading(false);
             getAllVolunteerRequests();
@@ -102,7 +104,6 @@ const ManageMyPosts = () => {
     Swal.fire({
       background: currTheme === "dark" ? "#1f2937 " : "",
       title: "Are you sure?",
-      text: "You won't be able to revert this!",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -112,7 +113,9 @@ const ManageMyPosts = () => {
       if (result.isConfirmed) {
         try {
           setPageLoading(true);
-          const response = await sAxios.delete(`/api/post/${id}`);
+          const response = await sAxios.delete(`/api/post/${id}`, {
+            params: { uid: user?.uid },
+          });
           if (response.data) {
             setPageLoading(false);
             getPostsOfOrganizer();

@@ -75,7 +75,7 @@ const Banner = () => {
             <p className="text-sm md:text-xl lg:text-2xl text-gray-900 font-bold">
               <CountUp end={180} duration={4} />+
             </p>
-            <p className="text-xs font-normal md:text-lg">Tourist spots</p>
+            <p className="text-xs font-normal md:text-lg">Volunteer Posts</p>
           </h2>
         </div>
       </div>
@@ -85,7 +85,9 @@ const Banner = () => {
             <p className="text-sm md:text-xl lg:text-2xl text-gray-900 font-bold">
               <CountUp end={1500} duration={4} />+
             </p>
-            <p className="text-xs font-normal md:text-lg">Happy Customers</p>
+            <p className="text-xs font-normal md:text-lg">
+              Dedicated Volunteers
+            </p>
           </h2>
         </div>
       </div>

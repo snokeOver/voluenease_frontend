@@ -64,14 +64,17 @@ const PostDetails = () => {
     }
   };
 
-  // Get the Spots that this user added
+  // Get the posts that this user added
   useEffect(() => {
     const getSingleData = async () => {
       try {
-        const { data } = await nsAxios.get(`/api/post/${id}`);
+        const { data } = await sAxios.get(`/api/post/${id}`, {
+          params: {
+            uid: user?.uid,
+          },
+        });
         if (data) {
           setPostCard(data);
-
           checkRequest(data._id);
         } else {
           console.log(data);
@@ -103,7 +106,7 @@ const PostDetails = () => {
     } else if (singlePost.volunNumber < 1) {
       return setToastMsg("Requirement filled up, Find another !");
     } else if (isApplied) {
-      return setToastMsg("You already applied for this post !");
+      return setToastMsg("You already requested for this post !");
     }
 
     setFormData((prevData) => ({
@@ -286,7 +289,10 @@ const PostDetails = () => {
           id="volun_request_modal"
           className={`modal ${openModal ? "modal-open" : ""} `}
         >
-          <div id="form-modal" className="modal-box w-11/12 max-w-5xl">
+          <div
+            id="form-modal"
+            className="modal-box w-11/12 max-w-5xl bg-base-200"
+          >
             <form method="dialog">
               {/* if there is a button in form, it will close the modal */}
               <button
@@ -310,7 +316,7 @@ const PostDetails = () => {
                     <label className="label">
                       <span className="label-text text-lg">Thumbnail URL</span>
                     </label>
-                    <label className="input input-bordered flex items-center gap-2 border-prime relative">
+                    <label className="input  flex items-center gap-2  relative">
                       <input
                         readOnly
                         placeholder={formData.imageUrl}
@@ -325,7 +331,7 @@ const PostDetails = () => {
                     <label className="label">
                       <span className="label-text text-lg">Category</span>
                     </label>
-                    <label className="input input-bordered flex items-center gap-2 border-prime relative">
+                    <label className="input  flex items-center gap-2  relative">
                       <input
                         readOnly
                         placeholder={formData.category}
@@ -343,7 +349,7 @@ const PostDetails = () => {
                     <label className="label">
                       <span className="label-text text-lg">Title</span>
                     </label>
-                    <label className="input input-bordered flex items-center gap-2 border-prime relative">
+                    <label className="input  flex items-center gap-2  relative">
                       <input
                         readOnly
                         placeholder={formData.title}
@@ -358,7 +364,7 @@ const PostDetails = () => {
                     <label className="label">
                       <span className="label-text text-lg">Location</span>
                     </label>
-                    <label className="input input-bordered flex items-center gap-2 border-prime relative">
+                    <label className="input  flex items-center gap-2  relative">
                       <input
                         readOnly
                         placeholder={formData.location}
@@ -378,7 +384,7 @@ const PostDetails = () => {
                         No. Of Volunteers
                       </span>
                     </label>
-                    <label className="input input-bordered flex items-center gap-2 border-prime relative">
+                    <label className="input  flex items-center gap-2  relative">
                       <input
                         readOnly
                         placeholder={formData.volunNumber}
@@ -392,7 +398,7 @@ const PostDetails = () => {
                     <label className="label">
                       <span className="label-text text-lg">Deadline</span>
                     </label>
-                    <label className="input input-bordered flex items-center gap-2 border-prime relative">
+                    <label className="input  flex items-center gap-2  relative">
                       <input
                         readOnly
                         placeholder={formData.deadline}
@@ -410,7 +416,7 @@ const PostDetails = () => {
                     <label className="label">
                       <span className="label-text text-lg">Organizer Name</span>
                     </label>
-                    <label className="input input-bordered flex items-center gap-2 border-prime relative">
+                    <label className="input  flex items-center gap-2  relative">
                       <input
                         readOnly
                         placeholder={formData.name}
@@ -427,7 +433,7 @@ const PostDetails = () => {
                         Organizer Email
                       </span>
                     </label>
-                    <label className="input input-bordered flex items-center gap-2 border-prime relative">
+                    <label className="input  flex items-center gap-2  relative">
                       <input
                         readOnly
                         placeholder={formData.email || "Private_Email"}
@@ -439,32 +445,13 @@ const PostDetails = () => {
                 </div>
 
                 {/* Fifth row */}
-                <div className="grid grid-cols-1 gap-2 md:gap-5  w-full md:mt-3">
-                  {/* Short Description part */}
-                  <div className="form-control">
-                    <label className="label">
-                      <span className="label-text text-lg">Description</span>
-                    </label>
-                    <textarea
-                      name="description"
-                      rows={4}
-                      value={formData.description || ""}
-                      onChange={handleChange}
-                      placeholder="Write relevant description here . . . "
-                      className="text-area-style input input-bordered h-auto placeholder-gray-400 text-sm border-prime"
-                      required
-                    />
-                  </div>
-                </div>
-
-                {/* Sixth row */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-5  w-full md:mt-3">
                   {/* Name part */}
                   <div className="form-control">
                     <label className="label">
                       <span className="label-text text-lg">Volunteer Name</span>
                     </label>
-                    <label className="input input-bordered flex items-center gap-2 border-prime relative">
+                    <label className="input  flex items-center gap-2  relative">
                       <input
                         readOnly
                         placeholder={formData.VolunName}
@@ -481,7 +468,7 @@ const PostDetails = () => {
                         Volunteer Email
                       </span>
                     </label>
-                    <label className="input input-bordered flex items-center gap-2 border-prime relative">
+                    <label className="input  flex items-center gap-2  relative">
                       <input
                         readOnly
                         placeholder={formData.volunEmail}
@@ -489,6 +476,23 @@ const PostDetails = () => {
                       />
                       <FaLock className="text-lg absolute right-4 bottom-4 " />
                     </label>
+                  </div>
+                </div>
+
+                {/* Sixth row */}
+                <div className="grid grid-cols-1 gap-2 md:gap-5  w-full md:mt-3">
+                  {/* Short Description part */}
+                  <div className="form-control relative">
+                    <label className="label">
+                      <span className="label-text text-lg">Description</span>
+                    </label>
+                    <textarea
+                      readOnly
+                      rows={3}
+                      placeholder={formData.description}
+                      className="text-area-style input  h-auto placeholder-gray-400 text-sm "
+                    />
+                    <FaLock className="text-lg absolute right-4 top-16 " />
                   </div>
                 </div>
                 {/* Seventh row */}

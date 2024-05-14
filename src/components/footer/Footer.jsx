@@ -43,13 +43,13 @@ const Footer = () => {
           <nav>
             <h6 className="footer-title">Quick Links</h6>
 
-            <NavLink className="link link-hover" to="/my-requests">
+            <NavLink className="link link-hover" to="/manage-posts">
               My Requests
             </NavLink>
             <NavLink className="link link-hover" to="/manage-posts">
               My Posts
             </NavLink>
-            <NavLink className="link link-hover" to="/profile">
+            <NavLink className="link link-hover" to="/user-profile">
               Profile
             </NavLink>
             <NavLink className="link link-hover" to="#">

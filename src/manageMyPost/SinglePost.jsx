@@ -4,12 +4,16 @@ const SinglePost = ({ sPost, index, handleDeletePost, handleUpdatePost }) => {
 
   return (
     <>
-      <tr
-        className={`cursor-pointer dark:hover:bg-gray-800 hover:bg-gray-200 my_tooltip_${index}`}
-      >
+      <tr className="cursor-pointer dark:hover:bg-gray-800 hover:bg-gray-200">
         <th>{index + 1}</th>
-        <td>{title}</td>
-        <td>{volunNumber}</td>
+        <td className={`my_tooltip_${index}`}>{title}</td>
+        <td>
+          {volunNumber > 0 ? (
+            volunNumber
+          ) : (
+            <p className="text-yellow-500">Filled</p>
+          )}
+        </td>
         <td>
           {new Date(deadline).setHours(0, 0, 0, 0) >=
           new Date().setHours(0, 0, 0, 0) ? (
@@ -18,7 +22,7 @@ const SinglePost = ({ sPost, index, handleDeletePost, handleUpdatePost }) => {
             <p className="text-yellow-500">Expired</p>
           )}
         </td>
-        <td className="">
+        <td className="delete_btn_tooltip">
           <button
             onClick={() => handleDeletePost(_id)}
             className="text-gray-500 transition-colors duration-200   hover:text-red-500 focus:outline-none"
@@ -39,7 +43,7 @@ const SinglePost = ({ sPost, index, handleDeletePost, handleUpdatePost }) => {
             </svg>
           </button>
         </td>
-        <td className="">
+        <td className="update_btn_tooltip">
           <button
             onClick={() => handleUpdatePost(sPost)}
             className="text-gray-500 transition-colors duration-200   hover:text-primary focus:outline-none"
@@ -71,6 +75,22 @@ const SinglePost = ({ sPost, index, handleDeletePost, handleUpdatePost }) => {
           src={imageUrl}
           alt=""
         />
+      </Tooltip>
+      <Tooltip
+        anchorSelect=".delete_btn_tooltip"
+        place="bottom"
+        className="z-50"
+        variant="warning"
+      >
+        <p>Delete</p>
+      </Tooltip>
+      <Tooltip
+        anchorSelect=".update_btn_tooltip"
+        place="bottom"
+        className="z-50"
+        variant="info"
+      >
+        <p>Update</p>
       </Tooltip>
     </>
   );

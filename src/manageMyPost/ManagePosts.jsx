@@ -116,7 +116,10 @@ const ManagePosts = ({
           id="spot_update_modal"
           className={`modal ${openModal ? "modal-open" : ""} `}
         >
-          <div id="form-modal" className="modal-box w-11/12 max-w-5xl">
+          <div
+            id="form-modal"
+            className="modal-box w-11/12 max-w-5xl bg-base-200"
+          >
             <form method="dialog">
               {/* if there is a button in form, it will close the modal */}
               <button
@@ -251,12 +254,12 @@ const ManagePosts = ({
                         Deadline <span className="text-red-500">*</span>
                       </span>
                     </label>
-                    <label className="input input-bordered flex items-center gap-2 border-prime">
-                      <DatePicker
-                        selected={startDate}
-                        onChange={(date) => setStartDate(date)}
-                      />
-                    </label>
+
+                    <DatePicker
+                      className="input input-bordered flex items-center gap-2 border-prime w-full"
+                      selected={startDate}
+                      onChange={(date) => setStartDate(date)}
+                    />
                   </div>
                 </div>
 
@@ -267,7 +270,7 @@ const ManagePosts = ({
                     <label className="label">
                       <span className="label-text text-lg">Organizer Name</span>
                     </label>
-                    <label className="input input-bordered flex items-center gap-2 border-prime relative">
+                    <label className="input  flex items-center gap-2  relative">
                       <input
                         readOnly
                         type="text"
@@ -285,7 +288,7 @@ const ManagePosts = ({
                         Organizer Email
                       </span>
                     </label>
-                    <label className="input input-bordered flex items-center gap-2 border-prime relative">
+                    <label className="input  flex items-center gap-2  relative">
                       <input
                         readOnly
                         type="email"
