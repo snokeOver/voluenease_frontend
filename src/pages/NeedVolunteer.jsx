@@ -68,19 +68,24 @@ const NeedVolunteer = () => {
     }
   }, [currentPage, itemsPerPage, search]);
 
+  // Set when the next and previous button will be action and disable
+  useEffect(() => {
+    if (currentPage === 1) {
+      setPrevDisabled(true);
+    } else {
+      setPrevDisabled(false);
+    }
+    if (currentPage === numberOfPages) {
+      setNextDisabled(true);
+    } else {
+      setNextDisabled(false);
+    }
+  }, [currentPage]);
+
   //   handle previous page
   const handlePrevious = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
-      setPrevDisabled(false);
-      setNextDisabled(false);
-    } else {
-      setPrevDisabled(true);
-      setNextDisabled(false);
-    }
-
-    if (currentPage === 2) {
-      setPrevDisabled(true);
     }
   };
 
@@ -88,15 +93,6 @@ const NeedVolunteer = () => {
   const handleNext = () => {
     if (currentPage < numberOfPages) {
       setCurrentPage(currentPage + 1);
-      setNextDisabled(false);
-      setPrevDisabled(false);
-    } else {
-      setNextDisabled(true);
-      setPrevDisabled(false);
-    }
-
-    if (currentPage + 1 === numberOfPages) {
-      setNextDisabled(true);
     }
   };
 
@@ -310,7 +306,7 @@ const NeedVolunteer = () => {
             <div className="flex gap-3">
               {/* Page Button */}
               {pages.map((page) =>
-                (page === currentPage - 2 && page !== 0) ||
+                page === currentPage - 2 ||
                 page === currentPage - 1 ||
                 page === currentPage ||
                 page === numberOfPages - 1 ? (
