@@ -101,7 +101,7 @@ const PostDetails = () => {
       new Date().setHours(0, 0, 0, 0)
     ) {
       return setToastMsg("Expired! Please find another !");
-    } else if (singlePost.email === user.email) {
+    } else if (singlePost.uid === user.uid) {
       return setToastMsg("You are not allowed !");
     } else if (singlePost.volunNumber < 1) {
       return setToastMsg("Requirement filled up, Find another !");

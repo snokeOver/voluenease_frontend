@@ -66,7 +66,6 @@ const AuthProvider = ({ children }) => {
             { withCredentials: true }
           );
           setLoading(false);
-          console.log(data);
         } catch (err) {
           console.log(err.message);
           setLoading(false);

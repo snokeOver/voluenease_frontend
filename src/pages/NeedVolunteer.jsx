@@ -80,7 +80,11 @@ const NeedVolunteer = () => {
     } else {
       setNextDisabled(false);
     }
-  }, [currentPage]);
+    if (currentPage === 1 && numberOfPages === 1) {
+      setPrevDisabled(true);
+      setNextDisabled(true);
+    }
+  }, [currentPage, numberOfPages]);
 
   //   handle previous page
   const handlePrevious = () => {
