@@ -248,9 +248,9 @@ const Join = () => {
       <Helmet>
         <title> Join | VolunEase</title>
       </Helmet>
-      <div className="  container bg-base-100 mx-auto">
+      <div className="container bg-base-100 mx-auto">
         <div className="hero bg-base-100 rounded-xl flex flex-col md:flex-row-reverse">
-          <div className="hero-content  flex-1 w-full flex-col">
+          <div className="hero-content  flex-1 w-full flex-col mt-16 md:mt-0">
             <LogoWithTitle title={successMsg || "Join Here"} />
 
             <div className="card w-full max-w-lg shadow-2xl bg-base-100">
@@ -291,7 +291,7 @@ const Join = () => {
                       <label className="label">
                         <span className="label-text text-lg">Your Name</span>
                       </label>
-                      <label className="input input-bordered flex items-center gap-2  border-prime">
+                      <label className="input input-bordered flex items-center gap-2  border-primary">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 16 16"
@@ -323,7 +323,7 @@ const Join = () => {
                           Your Photo URL
                         </span>
                       </label>
-                      <label className="input input-bordered flex items-center gap-2 border-prime">
+                      <label className="input input-bordered flex items-center gap-2 border-primary">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
@@ -360,7 +360,7 @@ const Join = () => {
                           Email <span className="text-red-500">*</span>
                         </span>
                       </label>
-                      <label className="input input-bordered flex items-center gap-2 border-prime">
+                      <label className="input input-bordered flex items-center gap-2 border-primary">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 16 16"
@@ -389,7 +389,7 @@ const Join = () => {
                           Password <span className="text-red-500">*</span>
                         </span>
                       </label>
-                      <label className="input input-bordered flex items-center gap-2 border-prime">
+                      <label className="input input-bordered flex items-center gap-2 border-primary">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 16 16"
@@ -451,7 +451,7 @@ const Join = () => {
                           errMsg.photoUrlErrMsg ||
                           errMsg.passwordErrMsg
                         }
-                        className="btn btn-outline border-prime  text-prime  py-3 rounded-2xl hover:bg-prime hover:text-gray-100 hover:border-prime "
+                        className="btn btn-outline border-primary  text-primary  py-3 rounded-2xl hover:bg-primary hover:text-gray-100 hover:border-primary "
                       >
                         Register
                       </button>

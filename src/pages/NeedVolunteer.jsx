@@ -150,10 +150,12 @@ const NeedVolunteer = () => {
         <PageSkeleton />
       ) : (
         <div className="md:container bg-base-100  md:mx-auto px-2  overflow-hidden">
-          <SectionTitle
-            title="You Can Be The Volunteer"
-            subTitle="Volunteering is an act of selflessness and compassion, where individuals offer their time, skills."
-          />
+          <div className="mt-10 md:mt-16">
+            <SectionTitle
+              title="You Can Be The Volunteer"
+              subTitle="Volunteering is an act of selflessness and compassion, where individuals offer their time, skills."
+            />
+          </div>
 
           {/* navigation bar */}
 
@@ -169,11 +171,11 @@ const NeedVolunteer = () => {
                         type="text"
                         name="searchVal"
                         placeholder="Search . . . "
-                        className="input search-input  w-full py-2 bg-transparent rounded-md  placeholder-gray-600 dark:placeholder-gray-100 border-prime"
+                        className="input search-input  w-full py-2 bg-transparent rounded-md  placeholder-gray-600 dark:placeholder-gray-100 border-primary"
                       />
                       <IoIosSearch
                         onClick={handleSearch}
-                        className="absolute cursor-pointer hover:text-prime right-5  top-3"
+                        className="absolute cursor-pointer hover:text-primary right-5  top-3"
                       />
                     </div>
                   </fieldset>
@@ -189,24 +191,24 @@ const NeedVolunteer = () => {
                 <ul className="menu menu-horizontal px-1">
                   <li>
                     <details>
-                      <summary className="px-14 bg-prime dark:hover:bg-sky-600 hover:bg-sky-600 text-gray-100 w-full">
+                      <summary className="px-14 bg-primary dark:hover:bg-sky-600 hover:bg-green-500 text-gray-100 w-full">
                         Sorted By
                       </summary>
                       <ul className="p-2 rounded-t-none rounded-b-lg z-50 w-full">
                         <li
-                          className=" hover:border-b-2 rounded-none hover:border-prime dark:hover:hover:border-prime mr-2"
+                          className=" hover:border-b-2 rounded-none hover:border-primary dark:hover:border-primary mr-2"
                           onClick={() => handleFilterSpot("deadline")}
                         >
                           <a>Deadline</a>
                         </li>
                         <li
-                          className=" hover:border-b-2 rounded-none hover:border-prime dark:hover:hover:border-prime mr-2"
+                          className=" hover:border-b-2 rounded-none hover:border-primary dark:hover:border-primary mr-2"
                           onClick={() => handleFilterSpot("number")}
                         >
                           <a>Volunteer Number</a>
                         </li>
                         <li
-                          className=" hover:border-b-2 rounded-none hover:border-prime dark:hover:hover:border-prime mr-2"
+                          className=" hover:border-b-2 rounded-none hover:border-primary dark:hover:border-primary mr-2"
                           onClick={() => handleFilterSpot("reset")}
                         >
                           <a>Reset Sort</a>

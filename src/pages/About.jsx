@@ -13,7 +13,7 @@ const About = () => {
         />
         <div className="absolute flex h-full w-full items-center lg:bg-gradient-to-l from-[#1d1c1c6b] to-[rgba(21, 21, 21, 0.00)] rounded-xl top-0 left-0">
           <div className="bg-gray-200 mx-auto text-gray-700 w-1/2 p-2 lg:p-10 hidden lg:block">
-            <h2 className="text-xl md:text-2xl lg:text-4xl xl:text-6xl font-semibold w-full lg:w-fit text-center md:text-left border-b-4 border-prime mb-1 md:mb-5">
+            <h2 className="text-xl md:text-2xl lg:text-4xl xl:text-6xl font-semibold w-full lg:w-fit text-center md:text-left border-b-4 border-primary mb-1 md:mb-5">
               About Us
             </h2>
             <p className="text-center text-xs md:text-base md:text-left">
@@ -24,7 +24,7 @@ const About = () => {
           </div>
         </div>
         <div className="bg-base-200 mx-auto px-2 md:px-10 py-10 lg:hidden flex flex-col items-center text-center gap-4">
-          <h2 className="text-xl font-semibold w-fit text-center  border-b-4 border-prime mb-1 md:mb-5">
+          <h2 className="text-xl font-semibold w-fit text-center  border-b-4 border-primary mb-1 md:mb-5">
             About Us
           </h2>
           <p className=" text-sm md:text-base text-left">

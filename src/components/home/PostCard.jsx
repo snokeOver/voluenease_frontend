@@ -16,7 +16,7 @@ const PostCard = ({ post, handleShowDetailsBtn }) => {
           alt={imageUrl}
         />
         <div>
-          <h5 className="absolute  top-5 right-5 px-3 text-gray-800 font-semibold  bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 border border-gray-300 hover:text-prime">
+          <h5 className="absolute  top-5 right-5 px-3 text-gray-800 font-semibold  bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-40 border border-gray-300 hover:text-primary">
             {category}
           </h5>
         </div>

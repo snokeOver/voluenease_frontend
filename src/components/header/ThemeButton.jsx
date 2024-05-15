@@ -26,7 +26,7 @@ const ThemeButton = () => {
   }, [currTheme]);
 
   return (
-    <label className="swap swap-rotate dark:text-yellow-400 dark:hover:text-yellow-500 text-gray-600 hover:text-gray-800">
+    <label className="swap swap-rotate dark:text-yellow-400 dark:hover:text-yellow-500 text-gray-800 hover:text-gray-600">
       {/* this hidden checkbox controls the state */}
       <input
         type="checkbox"

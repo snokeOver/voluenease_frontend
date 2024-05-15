@@ -28,7 +28,7 @@ const MyRequest = ({ handleDeleteRequest, loadedRequests }) => {
         <div className=" flex  items-center md:w-[90%] mx-auto gap-x-3 mb-4">
           <h2 className="text-lg  font-medium ">My Request to be Volunteer</h2>
 
-          <span className="px-3 py-1 text-xs text-prime bg-blue-100 rounded-full ">
+          <span className="px-3 py-1 text-xs text-primary bg-blue-100 rounded-full ">
             {loadedRequests.length}
             <span className="ml-1"> Request (s)</span>
           </span>

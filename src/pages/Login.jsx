@@ -130,7 +130,7 @@ const Login = () => {
       </Helmet>
       <div className=" container  bg-base-100 mx-auto">
         <div className="hero  rounded-xl flex flex-col md:flex-row-reverse">
-          <div className="hero-content  w-full flex-col flex-1">
+          <div className="hero-content  w-full flex-col flex-1 mt-16 md:mt-0">
             <LogoWithTitle title="Login Here" />
             <div className="card w-full max-w-lg shadow-2xl bg-base-100">
               <div className="card-body">
@@ -153,7 +153,7 @@ const Login = () => {
                   <label className="label">
                     <span className="label-text text-lg">Email</span>
                   </label>
-                  <label className="input input-bordered flex items-center gap-2 border-prime">
+                  <label className="input input-bordered flex items-center gap-2 border-primary">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 16 16"
@@ -179,7 +179,7 @@ const Login = () => {
                   <label className="label">
                     <span className="label-text text-lg">Password</span>
                   </label>
-                  <label className="input input-bordered flex items-center gap-2 border-prime">
+                  <label className="input input-bordered flex items-center gap-2 border-primary">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 16 16"

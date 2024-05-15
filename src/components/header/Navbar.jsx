@@ -4,7 +4,6 @@ import useAuth from "../../hooks/useAuth";
 import useData from "../../hooks/useData";
 import useLogOut from "../../hooks/useLogOut";
 import RingLoading from "../shared/RingLoading";
-import { useState } from "react";
 
 const Navbar = () => {
   const { user, loading } = useAuth();
@@ -31,7 +30,9 @@ const Navbar = () => {
       <li className="relative">
         <NavLink
           className={({ isActive }) =>
-            `${isActive ? "text-prime" : "hover:text-prime"} mr-1 `
+            `${
+              isActive ? "text-prime" : "hover:text-prime dark:text-gray-100"
+            } mr-1`
           }
           to="/"
         >
@@ -44,7 +45,9 @@ const Navbar = () => {
       <li className="relative">
         <NavLink
           className={({ isActive }) =>
-            `${isActive ? "text-prime" : "hover:text-prime"} mr-1 `
+            `${
+              isActive ? "text-prime" : "hover:text-prime dark:text-gray-100"
+            } mr-1`
           }
           to="/need-volunteer"
         >
@@ -56,7 +59,7 @@ const Navbar = () => {
       </li>
       <li>
         <details>
-          <summary>Organization</summary>
+          <summary className="dark:text-gray-100">Organization</summary>
           <ul className="p-2 rounded-t-none rounded-b-md z-50">
             <li className="relative">
               <NavLink
@@ -97,7 +100,7 @@ const Navbar = () => {
             <>
               <li>
                 <details>
-                  <summary>My Profile</summary>
+                  <summary className="dark:text-gray-100">My Profile</summary>
                   <ul className="p-2 rounded-t-none rounded-b-md w-[9rem] z-50">
                     <li className="relative">
                       <NavLink

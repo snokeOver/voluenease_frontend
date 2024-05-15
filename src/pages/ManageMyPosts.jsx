@@ -225,7 +225,7 @@ const ManageMyPosts = () => {
         <PageSkeleton />
       ) : (
         <div className=" md:container bg-base-100 mx-2 md:mx-auto">
-          <div role="tablist" className="tabs tabs-lifted px-0 py-5 lg:px-5 ">
+          <div role="tablist" className="tabs tabs-lifted px-0 py-20 lg:px-5 ">
             {/* My Post section */}
             <input
               type="radio"

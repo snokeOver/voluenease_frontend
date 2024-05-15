@@ -508,7 +508,7 @@ const PostDetails = () => {
                       value={formData.suggestion || ""}
                       onChange={handleChange}
                       placeholder="Write if you have any . . . "
-                      className="text-area-style input input-bordered h-auto placeholder-gray-400 text-sm border-prime"
+                      className="text-area-style input input-bordered h-auto placeholder-gray-400 text-sm border-primary"
                     />
                   </div>
                 </div>

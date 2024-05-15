@@ -120,7 +120,7 @@ const AddPost = () => {
         <title>Add Post | VolunEase</title>
       </Helmet>
       <div className=" md:container bg-base-100 mx-2 md:mx-auto">
-        <div className="bg-base-200 flex flex-col gap-5 mx-2 md:mx-10 py-10 px-5">
+        <div className="bg-base-200 flex flex-col gap-5 mx-2 md:mx-10 py-20 px-5">
           <div>
             <h2 className="text-2xl md:text-3xl text-center font-semibold">
               Add New Volunteer Post
@@ -137,7 +137,7 @@ const AddPost = () => {
                       Thumbnail URL <span className="text-red-500">*</span>
                     </span>
                   </label>
-                  <label className="input input-bordered flex items-center gap-2 border-prime">
+                  <label className="input input-bordered flex items-center gap-2 border-primary">
                     <input
                       required
                       type="text"
@@ -162,7 +162,7 @@ const AddPost = () => {
                     name="category"
                     value={formData.category || ""}
                     onChange={handleChange}
-                    className="select select-bordered w-full border-prime"
+                    className="select select-bordered w-full border-primary"
                   >
                     <option disabled value="">
                       Select a Category
@@ -184,7 +184,7 @@ const AddPost = () => {
                       Post Title <span className="text-red-500">*</span>
                     </span>
                   </label>
-                  <label className="input input-bordered flex items-center gap-2 border-prime">
+                  <label className="input input-bordered flex items-center gap-2 border-primary">
                     <input
                       required
                       type="text"
@@ -204,7 +204,7 @@ const AddPost = () => {
                       Location <span className="text-red-500">*</span>
                     </span>
                   </label>
-                  <label className="input input-bordered flex items-center gap-2 border-prime">
+                  <label className="input input-bordered flex items-center gap-2 border-primary">
                     <input
                       required
                       type="text"
@@ -227,7 +227,7 @@ const AddPost = () => {
                       No of Volunteers <span className="text-red-500">*</span>
                     </span>
                   </label>
-                  <label className="input input-bordered flex items-center gap-2 border-prime">
+                  <label className="input input-bordered flex items-center gap-2 border-primary">
                     <input
                       required
                       type="number"
@@ -248,7 +248,7 @@ const AddPost = () => {
                   </label>
 
                   <DatePicker
-                    className="input input-bordered flex items-center gap-2 border-prime w-full"
+                    className="input input-bordered flex items-center gap-2 border-primary w-full"
                     selected={startDate}
                     onChange={(date) => setStartDate(date)}
                   />
@@ -305,7 +305,7 @@ const AddPost = () => {
                     value={formData.description || ""}
                     onChange={handleChange}
                     placeholder="Write relevant description here . . . "
-                    className="text-area-style input input-bordered h-auto placeholder-gray-400 text-sm border-prime"
+                    className="text-area-style input input-bordered h-auto placeholder-gray-400 text-sm border-primary"
                     required
                   />
                 </div>

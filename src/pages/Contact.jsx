@@ -41,7 +41,7 @@ const Contact = () => {
       <div className="md:container bg-base-100 mx-2 md:mx-auto  overflow-hidden">
         <div
           id="contact_bg"
-          className="hero py-2 md:py-10 my-5 md:my-10 bg-base-200 rounded-lg md:w-[90%] mx-auto"
+          className="hero py-2 md:py-10 my-16 bg-base-200 rounded-lg md:w-[90%] mx-auto"
         >
           <div className="hero-content flex-col lg:gap-24 lg:flex-row-reverse">
             <div className="text-center lg:text-left text-gray-800 ">
@@ -61,7 +61,7 @@ const Contact = () => {
                       Your Name <span className="text-red-500">*</span>
                     </span>
                   </label>
-                  <label className="input input-bordered flex items-center gap-2 border-prime">
+                  <label className="input input-bordered flex items-center gap-2 border-primary">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 16 16"
@@ -87,7 +87,7 @@ const Contact = () => {
                   <span className="label-text text-lg">
                     Email <span className="text-red-500">*</span>
                   </span>
-                  <label className="input input-bordered flex items-center gap-2 border-prime">
+                  <label className="input input-bordered flex items-center gap-2 border-primary">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 16 16"
@@ -119,7 +119,7 @@ const Contact = () => {
                     value={formData.message || ""}
                     onChange={handleChange}
                     placeholder="Write your message here . . . "
-                    className="input input-bordered h-auto placeholder-gray-400 text-sm border-prime"
+                    className="input input-bordered h-auto placeholder-gray-400 text-sm border-primary"
                     required
                   />
                 </div>

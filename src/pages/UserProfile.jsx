@@ -85,7 +85,7 @@ const UserProfile = () => {
         <title>User Profile | VolunEase</title>
       </Helmet>
       <div className=" md:container bg-base-100 mx-2 md:mx-auto overflow-hidden">
-        <div className=" flex flex-col gap-6">
+        <div className=" flex flex-col gap-6 mt-14">
           <div className="card  w-full lg:w-1/2 mx-auto bg-base-100 shadow-xl rounded-md">
             <div className="card-body flex items-center ">
               <h2 className="card-title text-2xl md:text-3xl">
@@ -169,7 +169,7 @@ const UserProfile = () => {
                   onChange={handleChange}
                   type="text"
                   placeholder={user.displayName}
-                  className="input col-span-2 input-bordered  input-md w-full max-w-xs border-prime"
+                  className="input col-span-2 input-bordered  input-md w-full max-w-xs border-primary"
                 />
               </div>
 
@@ -182,7 +182,7 @@ const UserProfile = () => {
                   onChange={handleChange}
                   type="text"
                   placeholder={user.photoURL}
-                  className="input col-span-2 input-bordered  input-md w-full max-w-xs border-prime"
+                  className="input col-span-2 input-bordered  input-md w-full max-w-xs border-primary"
                 />
               </div>
               <div className="card-body w-full md:w-[80%] mx-auto  px-5 items-center gap-4 mb-6">

@@ -69,7 +69,7 @@ const Banner = () => {
           <span ref={progressContent}></span>
         </div>
       </Swiper>
-      <div className="absolute right-[5%] top-[8%]  z-10 flex flex-col gap-8 ">
+      <div className="absolute right-[5%] top-[25%] md:top-[16%]  z-10 flex flex-col gap-8 ">
         <div>
           <h2 className=" inline-block px-2 lg:px-4 py-1 text-gray-100 font-semibold  bg-gray-400 rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20  text-center">
             <p className="text-sm md:text-xl lg:text-2xl text-gray-900 font-bold">
@@ -79,7 +79,7 @@ const Banner = () => {
           </h2>
         </div>
       </div>
-      <div className="absolute left-[5%] top-[8%]  z-10 flex flex-col gap-8 ">
+      <div className="absolute left-[5%] top-[25%] md:top-[16%]  z-10 flex flex-col gap-8 ">
         <div>
           <h2 className=" inline-block px-2 lg:px-4 py-1 text-gray-100 bg-gray-400 font-semibold   rounded-md bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-20  text-center">
             <p className="text-sm md:text-xl lg:text-2xl text-gray-900 font-bold">

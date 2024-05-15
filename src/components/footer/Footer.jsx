@@ -64,14 +64,14 @@ const Footer = () => {
               name="name"
               type="text"
               placeholder="Your Name"
-              className="input border-t-0 border-l-0 border-r-0 border-b  input-bordered   border-prime input-md w-full max-w-xs"
+              className="input border-t-0 border-l-0 border-r-0 border-b  input-bordered   border-primary input-md w-full max-w-xs"
             />
             <div className="relative">
               <input
                 name="email"
                 type="email"
                 placeholder="Email . . . "
-                className="input border-t-0 border-l-0 border-r-0 border-b  input-bordered   border-prime input-md w-full max-w-xs "
+                className="input border-t-0 border-l-0 border-r-0 border-b  input-bordered   border-primary input-md w-full max-w-xs "
               />
               <FaLocationArrow className=" cursor-pointer text-lg absolute text-primary right-5 bottom-4 sm:right-20 md:right-5 " />
             </div>

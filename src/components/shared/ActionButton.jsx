@@ -7,7 +7,7 @@ const ActionButton = ({ buttonText, disabledStat }) => {
   return (
     <button
       disabled={disabledStat}
-      className="btn btn-outline border-prime  text-prime  py-3 rounded-2xl hover:bg-prime hover:text-gray-100 hover:border-prime w-full"
+      className="btn btn-outline border-primary  text-primary  py-3 rounded-2xl hover:bg-primary hover:text-gray-100 hover:border-primary w-full"
     >
       {pageLoading && <ButtonSpinner />}
       {buttonText}

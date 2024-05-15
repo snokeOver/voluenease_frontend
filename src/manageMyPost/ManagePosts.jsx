@@ -48,7 +48,7 @@ const ManagePosts = ({
             <div className=" flex  items-center w-[90%] mx-auto gap-x-3 mb-4">
               <h2 className="text-lg  font-medium ">My Posts for Volunteers</h2>
 
-              <span className="px-3 py-1 text-xs text-prime bg-blue-100 rounded-full ">
+              <span className="px-3 py-1 text-xs text-primary bg-blue-100 rounded-full ">
                 {loadedPosts.length}
                 <span className="ml-1"> Post (s)</span>
               </span>
@@ -145,7 +145,7 @@ const ManagePosts = ({
                         Thumbnail URL <span className="text-red-500">*</span>
                       </span>
                     </label>
-                    <label className="input input-bordered flex items-center gap-2 border-prime">
+                    <label className="input input-bordered flex items-center gap-2 border-primary">
                       <input
                         required
                         type="text"
@@ -170,7 +170,7 @@ const ManagePosts = ({
                       name="category"
                       value={formData.category || ""}
                       onChange={handleChange}
-                      className="select select-bordered w-full border-prime"
+                      className="select select-bordered w-full border-primary"
                     >
                       <option disabled value="">
                         Select a Category
@@ -192,7 +192,7 @@ const ManagePosts = ({
                         Post Title <span className="text-red-500">*</span>
                       </span>
                     </label>
-                    <label className="input input-bordered flex items-center gap-2 border-prime">
+                    <label className="input input-bordered flex items-center gap-2 border-primary">
                       <input
                         required
                         type="text"
@@ -212,7 +212,7 @@ const ManagePosts = ({
                         Location <span className="text-red-500">*</span>
                       </span>
                     </label>
-                    <label className="input input-bordered flex items-center gap-2 border-prime">
+                    <label className="input input-bordered flex items-center gap-2 border-primary">
                       <input
                         required
                         type="text"
@@ -235,7 +235,7 @@ const ManagePosts = ({
                         No of Volunteers <span className="text-red-500">*</span>
                       </span>
                     </label>
-                    <label className="input input-bordered flex items-center gap-2 border-prime">
+                    <label className="input input-bordered flex items-center gap-2 border-primary">
                       <input
                         required
                         type="number"
@@ -256,7 +256,7 @@ const ManagePosts = ({
                     </label>
 
                     <DatePicker
-                      className="input input-bordered flex items-center gap-2 border-prime w-full"
+                      className="input input-bordered flex items-center gap-2 border-primary w-full"
                       selected={startDate}
                       onChange={(date) => setStartDate(date)}
                     />
@@ -316,7 +316,7 @@ const ManagePosts = ({
                       value={formData.description || ""}
                       onChange={handleChange}
                       placeholder="Write relevant description here . . . "
-                      className="text-area-style input input-bordered h-auto placeholder-gray-400 text-sm border-prime"
+                      className="text-area-style input input-bordered h-auto placeholder-gray-400 text-sm border-primary"
                       required
                     />
                   </div>
