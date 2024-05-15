@@ -41,9 +41,14 @@ const ManageMyPosts = () => {
   });
   // Request Related
 
+  // Get the initial data for both post and request section
   useEffect(() => {
     if (user) {
-      getAllVolunteerRequests();
+      // This delay hypothetically ensures that the token received at user end
+      setTimeout(() => {
+        getAllVolunteerRequests();
+        getPostsOfOrganizer();
+      }, 600);
     }
   }, [user]);
 
@@ -92,12 +97,6 @@ const ManageMyPosts = () => {
     const formattedDate = deadline.toLocaleDateString("en-GB", options);
     return formattedDate.replace(/ /g, "-");
   };
-
-  useEffect(() => {
-    if (user) {
-      getPostsOfOrganizer();
-    }
-  }, [user]);
 
   // Handle the update post
   const handleDeletePost = (id) => {

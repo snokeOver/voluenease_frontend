@@ -4,10 +4,11 @@ import useAuth from "../../hooks/useAuth";
 import useData from "../../hooks/useData";
 import useLogOut from "../../hooks/useLogOut";
 import RingLoading from "../shared/RingLoading";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const { user, loading } = useAuth();
-  const { pageLoading, totalPost, totalRequest } = useData();
+  const { pageLoading, totalPost, totalRequest, currTheme } = useData();
   const logOut = useLogOut();
 
   const { pathname } = useLocation();
@@ -21,7 +22,19 @@ const Navbar = () => {
 
   // Handle LogOut operation
   const handleLogOut = () => {
-    logOut();
+    Swal.fire({
+      background: currTheme === "dark" ? "#1f2937 " : "",
+      title: "Are you sure?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, Log Me Out!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        logOut();
+      }
+    });
   };
 
   // All the navlinks

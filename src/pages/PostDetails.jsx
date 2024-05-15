@@ -87,7 +87,10 @@ const PostDetails = () => {
     };
     if (user) {
       setPageLoading(true);
-      getSingleData();
+      // This delay hypothetically ensures that the token received at user end
+      setTimeout(() => {
+        getSingleData();
+      }, 600);
     }
   }, [user]);
 
@@ -197,7 +200,7 @@ const PostDetails = () => {
               <PageSkeleton />
             </div>
           ) : (
-            <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 lg:p-8">
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 lg:p-8 mt-20">
               <figure className="w-full mx-auto rounded-xl ">
                 <img
                   className="h-full py-4 "

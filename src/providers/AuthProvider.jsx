@@ -55,14 +55,14 @@ const AuthProvider = ({ children }) => {
 
   // Observer for the change in User
   useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, async (user) => {
-      if (user) {
-        setUser(user);
+    const unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      if (currentUser?.uid) {
+        setUser(currentUser);
         setLoading(false);
         try {
           const { data } = await nSAxios.post(
             "/api/jwt",
-            { uid: user.uid },
+            { uid: currentUser.uid },
             { withCredentials: true }
           );
           setLoading(false);
@@ -76,7 +76,7 @@ const AuthProvider = ({ children }) => {
           const { data } = await nSAxios.post(
             "/api/logout",
             {
-              uid: user?.uid,
+              uid: currentUser?.uid,
             },
             { withCredentials: true }
           );
