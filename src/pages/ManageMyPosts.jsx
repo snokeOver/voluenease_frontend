@@ -11,7 +11,7 @@ import ManagePosts from "../manageMyPost/ManagePosts";
 import MyRequest from "../manageMyPost/MyRequest";
 
 const ManageMyPosts = () => {
-  const { user } = useAuth();
+  const { user, tokenPresent } = useAuth();
   const sAxios = useSAxios();
   const {
     setPageLoading,
@@ -43,14 +43,11 @@ const ManageMyPosts = () => {
 
   // Get the initial data for both post and request section
   useEffect(() => {
-    if (user) {
-      // This delay hypothetically ensures that the token received at user end
-      setTimeout(() => {
-        getAllVolunteerRequests();
-        getPostsOfOrganizer();
-      }, 600);
+    if (user && tokenPresent) {
+      getAllVolunteerRequests();
+      getPostsOfOrganizer();
     }
-  }, [user]);
+  }, [user, tokenPresent]);
 
   // Handle the delete request
   const handleDeleteRequest = (id) => {

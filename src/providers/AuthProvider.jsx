@@ -21,11 +21,14 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [regiSuccess, setRegiSuccess] = useState(false);
   const [logOutSuccess, setLogOutSuccess] = useState(false);
+  const [tokenPresent, setTokenPresent] = useState(false);
 
   // Register with email and password
   const register = (email, pass) => {
     return createUserWithEmailAndPassword(auth, email, pass);
   };
+
+  // Check if the token is present in the cookies
 
   // Login with email and Password
   const signIn = (email, pass) => {
@@ -56,16 +59,25 @@ const AuthProvider = ({ children }) => {
   // Observer for the change in User
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      setLoading(true);
       if (currentUser?.uid) {
         setUser(currentUser);
-        setLoading(false);
         try {
           const { data } = await nSAxios.post(
             "/api/jwt",
             { uid: currentUser.uid },
             { withCredentials: true }
           );
-          setLoading(false);
+          if (data.success === true) {
+            // Hypothetical delay to make sure the token is present at the broser's cookies
+            setTimeout(() => {
+              setTokenPresent(true);
+              setLoading(false);
+            }, 2000);
+          } else {
+            setTokenPresent(false);
+            setLoading(false);
+          }
         } catch (err) {
           console.log(err.message);
           setLoading(false);
@@ -107,6 +119,7 @@ const AuthProvider = ({ children }) => {
     setRegiSuccess,
     logOutSuccess,
     setLogOutSuccess,
+    tokenPresent,
   };
   return (
     <AuthContext.Provider value={authItems}>{children}</AuthContext.Provider>

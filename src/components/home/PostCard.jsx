@@ -23,22 +23,13 @@ const PostCard = ({ post, handleShowDetailsBtn }) => {
       </figure>
       <div className="card-body flex-1">
         <h2 className="card-title text-primary">{title}</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 flex-grow  py-3 text-message-color">
-          <div className="flex md:flex-col items-center gap-2 text-center">
+        <div className="grid grid-cols-1 flex-grow gap-1  py-3 text-message-color">
+          <div className="flex gap-5 items-center">
             <FaLocationDot className="text-2xl" />
             <h3>{location}</h3>
           </div>
-          <div className="flex md:flex-col items-center gap-2 text-center">
-            <FaPeopleLine className="text-3xl" />
-            <h3>
-              {volunNumber > 0 ? (
-                volunNumber
-              ) : (
-                <p className="text-yellow-500">Filled</p>
-              )}
-            </h3>
-          </div>
-          <div className="flex md:flex-col items-center gap-2 text-center">
+
+          <div className="flex gap-3 items-center">
             <CiCalendarDate className="text-3xl" />
             <h3>
               {new Date(deadline).setHours(0, 0, 0, 0) >=
@@ -46,6 +37,16 @@ const PostCard = ({ post, handleShowDetailsBtn }) => {
                 `${deadline}`
               ) : (
                 <p className="text-yellow-500">Expired</p>
+              )}
+            </h3>
+          </div>
+          <div className="flex gap-3 items-center">
+            <FaPeopleLine className="text-3xl" />
+            <h3>
+              {volunNumber > 0 ? (
+                volunNumber
+              ) : (
+                <p className="text-yellow-500">Filled</p>
               )}
             </h3>
           </div>

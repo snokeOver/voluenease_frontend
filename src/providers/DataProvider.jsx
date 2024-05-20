@@ -157,10 +157,10 @@ const DataProvider = ({ children }) => {
         withCredentials: true,
       });
       if (data) {
-        setCurrTheme(data.theme);
-      } else {
-        console.log(data);
-        setCurrTheme("dark");
+        //  New user have no user-reference in DB. Handle it properly here
+        if (data.theme === undefined) {
+          setCurrTheme("dark");
+        } else setCurrTheme(data.theme);
       }
     } catch (err) {
       console.log(err.response);

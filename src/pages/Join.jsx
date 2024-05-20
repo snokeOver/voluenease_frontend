@@ -7,7 +7,6 @@ import { Helmet } from "react-helmet-async";
 import useAuth from "../hooks/useAuth.jsx";
 import useData from "../hooks/useData.jsx";
 import LogoWithTitle from "../components/shared/login/LogoWithTitle.jsx";
-import SpinnerAtButton from "../components/shared/SpinnerAtButton.jsx";
 import GoogleButton from "../components/shared/GoogleButton.jsx";
 import GithubButton from "../components/shared/GithubButton.jsx";
 import SideSectionWithSlidder from "../components/shared/login/SideSectionWithSlidder.jsx";
@@ -80,16 +79,14 @@ const Join = () => {
     setPageLoading(true);
     register(formData.email, formData.password)
       .then((result) => {
-        const user = result.user;
-
+        const curuser = result.user;
+        firebaseRegiSuccess();
         // update user with additional information
-        updateUser(user, {
+        updateUser(curuser, {
           displayName: formData.name,
           photoURL: formData.photoUrl,
         })
-          .then((result) => {
-            firebaseRegiSuccess();
-          })
+          .then(() => {})
           .catch((err) => {
             firebaseRegisterError(err);
           });
@@ -194,6 +191,7 @@ const Join = () => {
 
   // handle the Register with Google button
   const handleGoogleRegister = () => {
+    setPageLoading(true);
     googleRegister()
       .then((result) => {
         firebaseRegiSuccess();
@@ -205,6 +203,7 @@ const Join = () => {
 
   // Handle the Register with Github button
   const handleGithubRegister = () => {
+    setPageLoading(true);
     githubRegister()
       .then((result) => {
         firebaseRegiSuccess();
@@ -234,7 +233,7 @@ const Join = () => {
 
     setRegiSuccess(true);
     setSuccessMsg("Joining Successful  !");
-    setPageLoading(true);
+
     setTimeout(() => {
       setRegiSuccess(false);
       setPageLoading(false);
@@ -445,16 +444,14 @@ const Join = () => {
                     )}
 
                     <div className="form-control mt-6">
-                      <button
-                        disabled={
+                      <ActionButton
+                        buttonText="Register"
+                        disabledStat={
                           errMsg.nameErrMsg ||
                           errMsg.photoUrlErrMsg ||
                           errMsg.passwordErrMsg
                         }
-                        className="btn btn-outline border-primary  text-primary  py-3 rounded-2xl hover:bg-primary hover:text-gray-100 hover:border-primary "
-                      >
-                        Register
-                      </button>
+                      />
                     </div>
                   </form>
 

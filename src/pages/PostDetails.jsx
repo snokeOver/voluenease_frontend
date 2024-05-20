@@ -7,7 +7,7 @@ import { MdEmail } from "react-icons/md";
 import Swal from "sweetalert2";
 
 import { Helmet } from "react-helmet-async";
-import useAxios from "../hooks/useAxios";
+
 import useData from "../hooks/useData";
 import useAuth from "../hooks/useAuth";
 import { goToTop } from "../helper/goToTop";
@@ -18,10 +18,9 @@ import useSAxios from "../hooks/useSAxios";
 import PrimaryButton from "../components/shared/PrimaryButton";
 
 const PostDetails = () => {
-  const nsAxios = useAxios();
   const sAxios = useSAxios();
   const { setToastMsg, pageLoading, setPageLoading, currTheme } = useData();
-  const { user } = useAuth();
+  const { user, tokenPresent, loading } = useAuth();
   const navigate = useNavigate();
   const [postCard, setPostCard] = useState({});
   const { id } = useParams();
@@ -85,14 +84,11 @@ const PostDetails = () => {
         setPageLoading(false);
       }
     };
-    if (user) {
+    if (user && tokenPresent) {
       setPageLoading(true);
-      // This delay hypothetically ensures that the token received at user end
-      setTimeout(() => {
-        getSingleData();
-      }, 600);
+      getSingleData();
     }
-  }, [user]);
+  }, [user, tokenPresent]);
 
   // Handle the add to cart button
   const handleBeVolunteer = (singlePost) => {
@@ -188,6 +184,7 @@ const PostDetails = () => {
       }
     });
   };
+
   return (
     <>
       <Helmet>
@@ -195,7 +192,7 @@ const PostDetails = () => {
       </Helmet>
       <div className="md:container mx-2 bg-base-100 md:mx-auto">
         <div className="card card-compact w-full  px-4 py-4">
-          {pageLoading ? (
+          {pageLoading || loading ? (
             <div>
               <PageSkeleton />
             </div>
@@ -209,7 +206,7 @@ const PostDetails = () => {
                 />
               </figure>
               <div className="card-body text-left w-full">
-                <div className="flex justify-between items-center">
+                <div className="flex flex-col md:flex-row md:justify-between gap-2 md:items-center">
                   <h2 className="card-title text-2xl md:text-4xl font-bold text-heading-color playfair-font">
                     {postCard.title}
                   </h2>

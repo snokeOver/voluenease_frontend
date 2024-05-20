@@ -294,7 +294,7 @@ const Navbar = () => {
               </button>
             </NavLink>
             <NavLink to="/login">
-              <button className="btn  py-2  md:py-3 md:px-7 rounded-sm text-gray-100  border-none bg-prime hover:bg-sky-300 hover:text-sky-600 dark:hover:bg-gray-200 dark:hover:text-prime">
+              <button className="btn py-2 md:py-3 md:px-7 rounded-sm text-gray-100 border-none bg-prime hover:bg-gray-200 hover:text-prime">
                 Login
               </button>
             </NavLink>
