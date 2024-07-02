@@ -1,8 +1,14 @@
 <h1>VolunEase</h1>
 
-<h2>Webiste Catagory:</h2>
-<p>Category_0010</p>
-<p>Volunteer Management Website</p>
+<h2>Proceed To Run On Your Local</h2>
+
+- **_Have A Local Version_**: Clone or download the latest commited version of this frontend for your local machine
+
+- **_Initiate Projects_**: use "npm install" to install all the necessary dependencies
+
+- **_Set Up The Environment Variables_**: Don't forget to set up the environment variables with your own credentials needed to run this projects. Most variable are defined in index.js file.
+
+- **_Find The Backend_**: Clone or download the backend from here: https://github.com/snokeOver/volunease-backend
 
 <h2>Live Site URL</h2>
 <p>Cick here to go to the live website: <a href="https://voluneease.web.app/">https://voluneease.web.app/</a></p>
